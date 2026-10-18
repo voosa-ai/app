@@ -175,6 +175,18 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 .foot{font-size:12px;color:var(--mortar);padding-block:0 32px;display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between}
 .linkbtn{border:0;background:none;color:var(--soft);text-decoration:underline;padding:0;font:inherit}
+.crit-lane{margin-top:22px;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:6px 8px}
+.crit-lane .lane-h{display:flex;align-items:center;gap:8px;padding:8px 8px 2px;font-size:13px;font-weight:600;color:var(--ink)}
+.crit-lane .lane-h small{font-weight:400;color:var(--mortar)}
+.crit-lane .row{grid-template-columns:28px 112px minmax(0,1fr) auto}
+.crit-lane .row + .row{border-top:1px solid var(--line)}
+.shield{flex:none;display:inline-grid;place-items:center;width:20px;height:20px;border-radius:6px;background:var(--ink);color:var(--bg)}
+.crit{display:inline-flex;align-items:center;gap:5px;color:var(--ink);font-weight:600}
+.crit-why{margin:4px 0 0;font-size:13px;color:var(--soft)}
+.crit-note{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1.5px solid var(--ink);border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:12px}
+.crit-form{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.crit-form input{flex:1 1 220px}
+@media (max-width:560px){.crit-lane .row{grid-template-columns:84px minmax(0,1fr) auto}}
 .empty{text-align:center;padding:48px 16px;color:var(--soft)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -279,7 +291,8 @@ var BUILDS=[
   desc:'Pulls current regulation text from the eCFR and flags sections that changed since the last pull, so the other compliance tools stay current.',
   votes:['phil'],shares:0,
   profile:{purpose:'Keep regulation text current in one place instead of each app copying it.',users:'Runs on a schedule; read by the compliance tools.',stake:'Every app that cites a regulation',step:'Background data source',data:'In: list of CFR parts. Out: current text and a change log.',work:'Copying regulation text into each app by hand.'},
-  comments:[{u:'doug',t:'2026-10-15',b:'This is the one the map should connect to everything else.'}]},
+  comments:[{u:'doug',t:'2026-10-15',b:'This is the one the map should connect to everything else.'}],
+  critical:{by:'phil',t:'2026-10-16',why:'Every compliance app relies on current regulation text. If this breaks, our citations go stale.'}},
  {id:'linkedinterviewer',co:'personal',name:'LinkedInterviewer',dept:'Work',tool:'Lovable',status:'tryout',up:d('2026-06-18'),kind:'chat',hue:'#2F6B8E',
   tag:'Practice interviews from a real job post',
   desc:'Practice interviews built from a LinkedIn job post. Asks the questions that role is likely to get and gives feedback on your answers.',
@@ -323,14 +336,16 @@ var BUILDS=[
   profile:{purpose:'One map for where we are allowed to go and camp.',users:'The family, trip planning.',stake:'None',step:'Trip planning',data:'In: map layers. Out: trails and camp areas.',work:'Several agency websites.'},
   comments:[]}
 ];
-var SEED=JSON.stringify(BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments}}));
+var OWNERS=['phil','doug'];
+BUILDS.forEach(function(b){if(!b.critical)b.critical=null});
+var SEED=JSON.stringify(BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments,critical:b.critical}}));
 
 /* ---------- state ---------- */
-var KEY='voosa-catalog-v2';
+var KEY='voosa-catalog-v3';
 function byId(id){for(var i=0;i<BUILDS.length;i++)if(BUILDS[i].id===id)return BUILDS[i]}
-function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.shares=x.shares;b.comments=x.comments}})}
+function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.shares=x.shares;b.comments=x.comments;b.critical=x.critical||null}})}
 function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds)apply(s.builds);return s||{}}catch(e){return{}}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments}})}))}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments,critical:b.critical}})}))}catch(e){}}
 var saved=load();
 var state={co:saved.co||'omitz',me:saved.me||'phil',sort:saved.sort||'top',dept:'all',status:'all'};
 
@@ -342,6 +357,8 @@ function fmtS(s){return fmt(new Date(s+'T15:00:00Z'))}
 var UP='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5 4 15h16z"/></svg>';
 var CMT='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>';
 var SHARE='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12v7h16v-7M12 3v12M7 8l5-5 5 5"/></svg>';
+var SHIELD='<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/></svg>';
+function ready(b){return b.votes.length>=THRESHOLD||!!b.critical}
 var toastT;function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},2600)}
 
 /* ---------- app thumbnails (stand-ins for screenshots Voosa takes at upload) ---------- */
@@ -377,7 +394,7 @@ function statusDot(b){return b.status==='live'?'<span class="dot live">Live</spa
 function faces(b){var v=b.votes.slice(-3).reverse();return'<span class="faces" title="'+esc(b.votes.map(function(u){return PEOPLE[u]}).join(', '))+'">'+v.map(function(u){return'<i style="background:'+COLORS[u]+'">'+initials(u)+'</i>'}).join('')+'</span>'}
 function voteBtn(b,wide){var mine=b.votes.indexOf(state.me)>=0,n=b.votes.length;
   return'<button class="vote'+(wide?' wide':'')+'" data-vote="'+b.id+'" aria-pressed="'+mine+'" aria-label="'+(mine?'Remove your vote':'Upvote')+', '+n+' votes">'+UP+'<span>'+(wide?(mine?'Voted · ':'Upvote · '):'')+n+'</span></button>'}
-function meta(b){return'<div class="meta">'+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+(b.votes.length>=THRESHOLD?'<span class="ready">Ready for analysis</span>':'')+'</div>'}
+function meta(b){return'<div class="meta">'+(b.critical?'<span class="crit">'+SHIELD+'Critical</span>':'')+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+(ready(b)?'<span class="ready">Ready for analysis</span>':'')+'</div>'}
 
 /* ---------- pickers ---------- */
 var coSel=document.getElementById('co'),meSel=document.getElementById('me');
@@ -397,6 +414,11 @@ function catalog(){
      '<div class="depts" role="group" aria-label="Department">'+['all'].concat(co.depts).map(function(dp){return'<button data-dept="'+esc(dp)+'" aria-pressed="'+(state.dept===dp)+'">'+(dp==='all'?'All':esc(dp))+'</button>'}).join('')+'</div>'+
      '<select class="status-sel" id="status" aria-label="Status"><option value="all">Any status</option><option value="tryout">Try-out</option><option value="live">Live</option></select></div>';
   if(!list.length)return h+'<div class="empty">No builds match these filters yet.</div>';
+  var crit=[];
+  if(state.sort==='top'){crit=list.filter(function(b){return b.critical});list=list.filter(function(b){return!b.critical})}
+  if(crit.length){h+='<section class="crit-lane" aria-label="Critical apps"><div class="lane-h"><span class="shield">'+SHIELD+'</span>Critical <small>Marked by leadership, regardless of votes</small></div>';
+    crit.forEach(function(b){h+='<article class="row"><span class="rank"></span>'+thumb(b)+'<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><p class="crit-why">\u201c'+esc(b.critical.why)+'\u201d \u2014 '+esc(PEOPLE[b.critical.by])+'</p>'+meta(b)+'</div>'+voteBtn(b)+'</article>'});
+    h+='</section>'}
   var top=state.sort==='top'?list.slice(0,Math.min(3,list.length)):[];
   var rest=list.slice(top.length);
   if(top.length){h+='<div class="podium">';top.forEach(function(b,i){
@@ -418,7 +440,10 @@ function buildPage(b){
      '<div class="actions"><button class="btn key" data-launch="'+b.id+'">Open app ↗</button>'+voteBtn(b,true)+'<button class="btn" data-share="'+b.id+'">'+SHARE+'Share</button></div>'+
      '<div class="byline"><span class="av" style="width:24px;height:24px;font-size:10px;background:'+COLORS.phil+'">PC</span>'+esc(PEOPLE.phil)+' · built with '+esc(b.tool)+' · '+fmt(b.up)+' · '+statusDot(b)+'</div></div></section>';
   h+='<div class="bp"><div style="min-width:0">';
-  h+='<div style="margin-top:22px">'+(n>=THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> '+n+' people voted for this, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+'.</div>':
+  var owner=OWNERS.indexOf(state.me)>=0;
+  if(b.critical)h+='<div class="crit-note"><span class="shield">'+SHIELD+'</span><div><strong>Marked critical</strong> by '+esc(PEOPLE[b.critical.by])+', '+fmtS(b.critical.t)+'. \u201c'+esc(b.critical.why)+'\u201d'+(owner?' <button class="linkbtn" data-uncrit="'+b.id+'">Remove</button>':'')+'</div></div>';
+  else if(owner)h+='<form class="crit-form" id="crit-form"><input type="text" id="crit-why" placeholder="Why is this critical? e.g. Required for our OSHA program" aria-label="Reason this app is critical"><button class="btn" type="submit">'+SHIELD+' Mark critical</button></form>';
+  h+='<div style="margin-top:22px">'+(b.critical&&n<THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> Marked critical, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+' without waiting for votes.</div>':n>=THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> '+n+' people voted for this, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+'.</div>':
      '<div class="progress-note">'+(THRESHOLD-n)+' more vote'+(THRESHOLD-n===1?'':'s')+' until Voosa looks at how this connects to the rest of '+esc(COMPANIES[b.co].name)+'. Shared '+b.shares+' time'+(b.shares===1?'':'s')+' so far.<div class="progress"><span style="width:'+(n/THRESHOLD*100)+'%"></span></div></div>')+'</div>';
   if(n)h+='<div class="meta" style="margin-top:12px">'+faces(b)+'<span>'+b.votes.map(function(u){return PEOPLE[u].split(' ')[0]}).join(', ')+' voted</span></div>';
   h+='<h2 class="section-h">Comments'+(b.comments.length?' · '+b.comments.length:'')+'</h2><div class="comments">';
@@ -438,13 +463,15 @@ function current(){var b=byId(location.hash.slice(1));if(b&&b.co!==state.co){sta
 function render(){
   var b=current();
   app.innerHTML=b?buildPage(b):catalog();
+  var cf=document.getElementById('crit-form');if(b&&cf)cf.onsubmit=function(e){e.preventDefault();var w=document.getElementById('crit-why').value.trim();if(!w){toast('Add a reason so people know why it matters');return}b.critical={by:state.me,t:new Date().toISOString().slice(0,10),why:w};save();render();toast(b.name+' marked critical')};
   if(b){document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:new Date().toISOString().slice(0,10),b:v});save();render();toast('Comment posted')}}
   else{document.getElementById('upload').onclick=function(){toast('Upload is spec 02. New builds land here under New.')};
     var st=document.getElementById('status');st.value=state.status;st.onchange=function(){state.status=st.value;render()}}
 }
 app.addEventListener('click',function(e){
-  var t=e.target.closest('[data-vote],[data-open],[data-share],[data-sort],[data-dept],[data-launch]');if(!t)return;
-  if(t.dataset.vote){var b=byId(t.dataset.vote),i=b.votes.indexOf(state.me);if(i>=0){b.votes.splice(i,1);toast('Vote removed')}else{b.votes.push(state.me);toast(b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted for '+b.name)}save();render()}
+  var t=e.target.closest('[data-uncrit],[data-vote],[data-open],[data-share],[data-sort],[data-dept],[data-launch]');if(!t)return;
+  if(t.dataset.uncrit){byId(t.dataset.uncrit).critical=null;save();render();toast('Critical flag removed')}
+  else if(t.dataset.vote){var b=byId(t.dataset.vote),i=b.votes.indexOf(state.me);if(i>=0){b.votes.splice(i,1);toast('Vote removed')}else{b.votes.push(state.me);toast(b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted for '+b.name)}save();render()}
   else if(t.dataset.launch){toast('Opens '+byId(t.dataset.launch).name+' in a new tab once it’s uploaded for real.')}
   else if(t.dataset.open){location.hash=t.dataset.open}
   else if(t.dataset.share){openShare(byId(t.dataset.share))}
