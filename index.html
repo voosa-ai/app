@@ -46,7 +46,7 @@ a{color:inherit}
 .demo{font-size:12px;color:#AFC0E4;white-space:nowrap}
 .sel{background:transparent;color:#FFFFFF;border:1px solid rgba(217,227,246,.28);border-radius:999px;padding:6px 12px;font-size:13.5px;max-width:42vw}
 .sel option{color:#152B62;background:#FFFFFF}
-@media (max-width:560px){.demo{display:none}.brand span{display:none}}
+@media (max-width:560px){.demo{display:none}.brand span{display:none}.bar .wrap{flex-wrap:wrap;row-gap:8px}.sel{flex:1 1 40%;max-width:none;min-width:0}}
 
 /* header + controls */
 .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;padding-block:28px 18px;flex-wrap:wrap}
@@ -184,9 +184,45 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
 .crit{display:inline-flex;align-items:center;gap:5px;color:var(--ink);font-weight:600}
 .crit-why{margin:4px 0 0;font-size:13px;color:var(--soft)}
 .crit-note{display:flex;gap:12px;align-items:flex-start;background:var(--surface);border:1.5px solid var(--ink);border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:12px}
-.crit-form{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
-.crit-form input{flex:1 1 220px}
 @media (max-width:560px){.crit-lane .row{grid-template-columns:84px minmax(0,1fr) auto}}
+.nav{display:flex;gap:4px;margin-left:8px}
+.nav a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:#C9D5EE;font-size:14px;padding:6px 12px;border-radius:999px}
+.nav a[aria-current="true"]{background:rgba(255,255,255,.12);color:#FFFFFF}
+.nav a:hover{color:#FFFFFF}
+@media (max-width:560px){.nav{margin-left:0}.nav a{padding:6px 8px}}
+.rely{color:var(--key-ink);font-weight:600}
+.muted-chip{color:var(--mortar);border:1px solid var(--line);border-radius:999px;padding:0 7px}
+.you-said{margin:10px 0 0;font-size:13px;color:var(--soft)}
+.levels{display:flex;flex-direction:column;gap:8px}
+.level{display:flex;flex-direction:column;align-items:flex-start;gap:1px;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:11px 14px}
+.level strong{font-size:14.5px;color:var(--ink)}
+.level span{font-size:12.5px;color:var(--soft)}
+.level:hover{border-color:var(--key)}
+.level[aria-pressed="true"]{border-color:var(--key);box-shadow:inset 0 0 0 1px var(--key);background:var(--key-soft)}
+.signals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding-block:6px 22px}
+@media (max-width:760px){.signals{grid-template-columns:minmax(0,1fr)}}
+.sig{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.sig h3{margin:0;font-size:14.5px;color:var(--ink)}
+.sig p{margin:0 0 4px;font-size:12.5px;color:var(--soft)}
+.sig .none{font-size:13px;color:var(--mortar)}
+.sig-item{display:flex;justify-content:space-between;gap:10px;align-items:baseline;border:0;background:var(--hover);border-radius:8px;padding:8px 10px;text-align:left;font-size:13px}
+.sig-item strong{color:var(--ink);font-weight:600}
+.sig-item span{color:var(--soft);font-size:12px;white-space:nowrap}
+.tbl-wrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.tbl{width:100%;border-collapse:collapse;min-width:640px;font-size:14px}
+.tbl th{text-align:left;font-weight:500;font-size:12px;color:var(--mortar);padding:12px 14px;border-bottom:1px solid var(--line)}
+.tbl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl .num{text-align:right;font-variant-numeric:tabular-nums}
+.sub-cell{font-size:12px;color:var(--mortar);margin-top:2px}
+.mix{display:flex;height:8px;border-radius:4px;overflow:hidden;background:var(--line);width:160px;max-width:100%}
+.m3{background:var(--key)}.m2{background:#F6A39F}.m1{background:#D9E3F6}
+.legend{font-size:12px;color:var(--mortar);display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-block:10px 40px}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-left:8px}
+.sw.m3{margin-left:0}
+.dec-btn{border:1px dashed var(--mortar);background:transparent;border-radius:999px;padding:5px 12px;font-size:13px;color:var(--soft)}
+.dec-btn.set{border-style:solid;border-color:var(--ink);color:var(--ink);font-weight:600}
+.dec-btn:hover{border-color:var(--key);color:var(--key-ink)}
 .empty{text-align:center;padding:48px 16px;color:var(--soft)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -199,6 +235,7 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
       <svg width="36" height="20" viewBox="0 32 200 112" aria-hidden="true"><g data-arch="#FFFFFF"></g></svg>
       <span>voosa</span>
     </a>
+    <nav class="nav" id="nav" aria-label="Main"></nav>
     <span class="bar-spacer"></span>
     <span class="demo">Demo, sample data</span>
     <select class="sel" id="co" aria-label="Company"></select>
@@ -237,6 +274,34 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
       <button type="button" class="btn" id="share-cancel">Cancel</button>
       <button type="submit" class="btn key" id="share-go">Copy link</button>
     </div>
+  </form>
+</dialog>
+
+<dialog id="rate" aria-labelledby="rate-title">
+  <div class="dlg">
+    <h3 id="rate-title">How much does it help you?</h3>
+    <p class="lede">Your vote counts either way. This tells leadership how much it matters.</p>
+    <div class="levels">
+      <button type="button" class="level" data-level="3"><strong>I rely on it</strong><span>My work would suffer without it</span></button>
+      <button type="button" class="level" data-level="2"><strong>Saves me time</strong><span>I use it and it helps</span></button>
+      <button type="button" class="level" data-level="1"><strong>Nice to have</strong><span>Cool idea, I'd use it sometimes</span></button>
+    </div>
+    <div class="row-end"><button type="button" class="btn" id="rate-cancel">Cancel</button></div>
+  </div>
+</dialog>
+
+<dialog id="decide" aria-labelledby="dec-title">
+  <form class="dlg" id="dec-form">
+    <h3 id="dec-title">Set direction</h3>
+    <p class="lede" id="dec-facts"></p>
+    <div class="levels">
+      <button type="button" class="level" data-kind="critical"><strong>Critical</strong><span>Pinned above the ranking and sent to analysis now</span></button>
+      <button type="button" class="level" data-kind="priority"><strong>Priority</strong><span>Next in line to connect to company data and go Live</span></button>
+      <button type="button" class="level" data-kind="watch"><strong>Watch</strong><span>Promising. Check back as more people try it</span></button>
+      <button type="button" class="level" data-kind="notnow"><strong>Not now</strong><span>Not a fit for current goals. Stays available to try</span></button>
+    </div>
+    <div class="field"><label for="dec-why">Why (the team sees this)</label><input type="text" id="dec-why" placeholder="e.g. Required for our OSHA program"></div>
+    <div class="row-end"><button type="button" class="linkbtn" id="dec-clear" style="margin-right:auto">Clear direction</button><button type="button" class="btn" id="dec-cancel">Cancel</button><button type="submit" class="btn primary">Save</button></div>
   </form>
 </dialog>
 
@@ -291,8 +356,7 @@ var BUILDS=[
   desc:'Pulls current regulation text from the eCFR and flags sections that changed since the last pull, so the other compliance tools stay current.',
   votes:['phil'],shares:0,
   profile:{purpose:'Keep regulation text current in one place instead of each app copying it.',users:'Runs on a schedule; read by the compliance tools.',stake:'Every app that cites a regulation',step:'Background data source',data:'In: list of CFR parts. Out: current text and a change log.',work:'Copying regulation text into each app by hand.'},
-  comments:[{u:'doug',t:'2026-10-15',b:'This is the one the map should connect to everything else.'}],
-  critical:{by:'phil',t:'2026-10-16',why:'Every compliance app relies on current regulation text. If this breaks, our citations go stale.'}},
+  comments:[{u:'doug',t:'2026-10-15',b:'This is the one the map should connect to everything else.'}]},
  {id:'linkedinterviewer',co:'personal',name:'LinkedInterviewer',dept:'Work',tool:'Lovable',status:'tryout',up:d('2026-06-18'),kind:'chat',hue:'#2F6B8E',
   tag:'Practice interviews from a real job post',
   desc:'Practice interviews built from a LinkedIn job post. Asks the questions that role is likely to get and gives feedback on your answers.',
@@ -337,15 +401,40 @@ var BUILDS=[
   comments:[]}
 ];
 var OWNERS=['phil','doug'];
-BUILDS.forEach(function(b){if(!b.critical)b.critical=null});
-var SEED=JSON.stringify(BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments,critical:b.critical}}));
+/* impact each voter gave: 1 nice to have, 2 saves me time, 3 I rely on it */
+var IMPACT={1:'Nice to have',2:'Saves me time',3:'I rely on it'};
+var SEED_IMPACT={
+  'ethics-compass':{phil:2,maria:2,jordan:2,priya:1,sam:1,tom:1},
+  'hydrogen-safety':{phil:2,doug:2,sam:3,tom:3,priya:2},
+  'bess-kit':{phil:2,tom:3,priya:2},
+  'glove-guide':{phil:3,jordan:3},
+  'ecfr-scraper':{phil:3},
+  'linkedinterviewer':{phil:2,jen:1},
+  'pay-planner':{phil:3,jen:3,doug:1},
+  'kids-budget':{jen:3},
+  'bow-hunter-math':{kids:2,phil:1},
+  'spell-it-out':{kids:2},
+  'adventure-weaver':{phil:2,jen:2,doug:1,kids:2},
+  'forest-atlas':{phil:2}
+};
+var DEC={critical:{label:'Critical',desc:'Pinned above the ranking and sent to analysis now'},
+  priority:{label:'Priority',desc:'Next in line to connect to company data and go Live'},
+  watch:{label:'Watch',desc:'Promising. Check back as more people try it'},
+  notnow:{label:'Not now',desc:'Not a fit for current goals. Stays available to try'}};
+var SEED_DEC={
+  'ecfr-scraper':{kind:'critical',by:'phil',t:'2026-10-16',why:'Every compliance app relies on current regulation text. If this breaks, our citations go stale.'},
+  'hydrogen-safety':{kind:'priority',by:'doug',t:'2026-10-12',why:'Field teams use it weekly. Connect it to project records next.'}
+};
+BUILDS.forEach(function(b){b.impact=SEED_IMPACT[b.id]||{};b.decision=SEED_DEC[b.id]||null});
+function snap(b){return{id:b.id,votes:b.votes,impact:b.impact,shares:b.shares,comments:b.comments,decision:b.decision}}
+var SEED=JSON.stringify(BUILDS.map(snap));
 
 /* ---------- state ---------- */
-var KEY='voosa-catalog-v3';
+var KEY='voosa-catalog-v4';
 function byId(id){for(var i=0;i<BUILDS.length;i++)if(BUILDS[i].id===id)return BUILDS[i]}
-function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.shares=x.shares;b.comments=x.comments;b.critical=x.critical||null}})}
+function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.impact=x.impact||{};b.shares=x.shares;b.comments=x.comments;b.decision=x.decision||null}})}
 function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds)apply(s.builds);return s||{}}catch(e){return{}}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments,critical:b.critical}})}))}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(snap)}))}catch(e){}}
 var saved=load();
 var state={co:saved.co||'omitz',me:saved.me||'phil',sort:saved.sort||'top',dept:'all',status:'all'};
 
@@ -354,11 +443,18 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;
 function initials(u){return PEOPLE[u].split(' ').map(function(w){return w[0]}).join('').slice(0,2)}
 function fmt(t){return new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric'})}
 function fmtS(s){return fmt(new Date(s+'T15:00:00Z'))}
+function today(){return new Date().toISOString().slice(0,10)}
 var UP='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 5 4 15h16z"/></svg>';
 var CMT='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>';
 var SHARE='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12v7h16v-7M12 3v12M7 8l5-5 5 5"/></svg>';
 var SHIELD='<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5z"/></svg>';
-function ready(b){return b.votes.length>=THRESHOLD||!!b.critical}
+var COMPASS='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z" fill="currentColor"/></svg>';
+function lvl(b,u){return b.impact[u]||2}
+function score(b){return b.votes.reduce(function(s,u){return s+lvl(b,u)},0)}
+function relyCount(b){return b.votes.filter(function(u){return lvl(b,u)===3}).length}
+function avg(b){return b.votes.length?score(b)/b.votes.length:0}
+function isOwner(){return OWNERS.indexOf(state.me)>=0}
+function ready(b){return b.votes.length>=THRESHOLD||!!(b.decision&&(b.decision.kind==='critical'||b.decision.kind==='priority'))}
 var toastT;function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},2600)}
 
 /* ---------- app thumbnails (stand-ins for screenshots Voosa takes at upload) ---------- */
@@ -394,31 +490,38 @@ function statusDot(b){return b.status==='live'?'<span class="dot live">Live</spa
 function faces(b){var v=b.votes.slice(-3).reverse();return'<span class="faces" title="'+esc(b.votes.map(function(u){return PEOPLE[u]}).join(', '))+'">'+v.map(function(u){return'<i style="background:'+COLORS[u]+'">'+initials(u)+'</i>'}).join('')+'</span>'}
 function voteBtn(b,wide){var mine=b.votes.indexOf(state.me)>=0,n=b.votes.length;
   return'<button class="vote'+(wide?' wide':'')+'" data-vote="'+b.id+'" aria-pressed="'+mine+'" aria-label="'+(mine?'Remove your vote':'Upvote')+', '+n+' votes">'+UP+'<span>'+(wide?(mine?'Voted · ':'Upvote · '):'')+n+'</span></button>'}
-function meta(b){return'<div class="meta">'+(b.critical?'<span class="crit">'+SHIELD+'Critical</span>':'')+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+(ready(b)?'<span class="ready">Ready for analysis</span>':'')+'</div>'}
+function decChip(b){var d=b.decision;if(!d)return'';
+  if(d.kind==='critical')return'<span class="crit">'+SHIELD+'Critical</span>';
+  if(d.kind==='priority')return'<span class="crit">'+COMPASS+'Priority</span>';
+  if(d.kind==='notnow')return'<span class="muted-chip">Not now</span>';return''}
+function meta(b){var r=relyCount(b);return'<div class="meta">'+decChip(b)+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(r?'<span class="rely">'+r+' rel'+(r===1?'ies':'y')+' on it</span>':'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+'</div>'}
+function nav(){var n=document.getElementById('nav');var s=location.hash==='#steer';
+  n.innerHTML='<a href="#" aria-current="'+(!s)+'">Catalog</a>'+(isOwner()?'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>':'')}
 
 /* ---------- pickers ---------- */
 var coSel=document.getElementById('co'),meSel=document.getElementById('me');
 coSel.innerHTML=Object.keys(COMPANIES).map(function(k){return'<option value="'+k+'">'+COMPANIES[k].name+'</option>'}).join('');
-function fillMe(){var m=COMPANIES[state.co].members;if(m.indexOf(state.me)<0)state.me='phil';meSel.innerHTML=m.map(function(u){return'<option value="'+u+'">'+PEOPLE[u]+'</option>'}).join('');meSel.value=state.me}
+function fillMe(){var m=COMPANIES[state.co].members;if(m.indexOf(state.me)<0)state.me='phil';meSel.innerHTML=m.map(function(u){return'<option value="'+u+'">'+PEOPLE[u]+(OWNERS.indexOf(u)>=0?' (leadership)':'')+'</option>'}).join('');meSel.value=state.me}
 coSel.value=state.co;fillMe();
-coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash)location.hash='';else render()};
-meSel.onchange=function(){state.me=meSel.value;save();render()};
+coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash&&location.hash!=='#steer')location.hash='';else render()};
+meSel.onchange=function(){state.me=meSel.value;save();if(location.hash==='#steer'&&!isOwner())location.hash='';else render()};
 
 /* ---------- catalog ---------- */
+function row(b,rank,why){return'<article class="row"><span class="rank">'+rank+'</span>'+thumb(b)+'<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button>'+
+  (why?'<p class="crit-why">“'+esc(b.decision.why)+'” — '+esc(PEOPLE[b.decision.by])+'</p>':'<p class="tagline">'+esc(b.tag)+'</p>')+meta(b)+'</div>'+voteBtn(b)+'</article>'}
 function catalog(){
   var co=COMPANIES[state.co];
   var list=BUILDS.filter(function(b){return b.co===state.co&&(state.dept==='all'||b.dept===state.dept)&&(state.status==='all'||b.status===state.status)});
-  list.sort(state.sort==='top'?function(a,b){return b.votes.length-a.votes.length||b.up-a.up}:function(a,b){return b.up-a.up});
+  list.sort(state.sort==='top'?function(a,b){return score(b)-score(a)||b.votes.length-a.votes.length||b.up-a.up}:function(a,b){return b.up-a.up});
   var h='<div class="head"><div><h1>'+esc(co.name)+' builds</h1><p class="sub">Open anything with one click. Vote for what helps your work.</p></div><button class="btn primary" id="upload">+ Upload a build</button></div>';
   h+='<div class="controls"><div class="tabs" role="group" aria-label="Sort"><button data-sort="top" aria-pressed="'+(state.sort==='top')+'">Top</button><button data-sort="new" aria-pressed="'+(state.sort==='new')+'">New</button></div>'+
      '<div class="depts" role="group" aria-label="Department">'+['all'].concat(co.depts).map(function(dp){return'<button data-dept="'+esc(dp)+'" aria-pressed="'+(state.dept===dp)+'">'+(dp==='all'?'All':esc(dp))+'</button>'}).join('')+'</div>'+
      '<select class="status-sel" id="status" aria-label="Status"><option value="all">Any status</option><option value="tryout">Try-out</option><option value="live">Live</option></select></div>';
   if(!list.length)return h+'<div class="empty">No builds match these filters yet.</div>';
   var crit=[];
-  if(state.sort==='top'){crit=list.filter(function(b){return b.critical});list=list.filter(function(b){return!b.critical})}
-  if(crit.length){h+='<section class="crit-lane" aria-label="Critical apps"><div class="lane-h"><span class="shield">'+SHIELD+'</span>Critical <small>Marked by leadership, regardless of votes</small></div>';
-    crit.forEach(function(b){h+='<article class="row"><span class="rank"></span>'+thumb(b)+'<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><p class="crit-why">\u201c'+esc(b.critical.why)+'\u201d \u2014 '+esc(PEOPLE[b.critical.by])+'</p>'+meta(b)+'</div>'+voteBtn(b)+'</article>'});
-    h+='</section>'}
+  if(state.sort==='top'){crit=list.filter(function(b){return b.decision&&b.decision.kind==='critical'});list=list.filter(function(b){return!(b.decision&&b.decision.kind==='critical')})}
+  if(crit.length){h+='<section class="crit-lane" aria-label="Critical apps"><div class="lane-h"><span class="shield">'+SHIELD+'</span>Critical <small>Set by leadership, regardless of votes</small></div>';
+    crit.forEach(function(b){h+=row(b,'',true)});h+='</section>'}
   var top=state.sort==='top'?list.slice(0,Math.min(3,list.length)):[];
   var rest=list.slice(top.length);
   if(top.length){h+='<div class="podium">';top.forEach(function(b,i){
@@ -426,26 +529,51 @@ function catalog(){
       '<div class="pbody"><div class="info"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><p class="tagline">'+esc(b.tag)+'</p>'+meta(b)+'</div>'+voteBtn(b)+'</div></article>'});
     h+='</div>'}
   h+='<div class="list">';
-  rest.forEach(function(b,i){
-    h+='<article class="row"><span class="rank">'+(state.sort==='top'?(top.length+i+1):'')+'</span>'+thumb(b)+
-      '<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><p class="tagline">'+esc(b.tag)+'</p>'+meta(b)+'</div>'+voteBtn(b)+'</article>'});
+  rest.forEach(function(b,i){h+=row(b,state.sort==='top'?(top.length+i+1):'')});
   return h+'</div>';
+}
+
+/* ---------- steer (leadership) ---------- */
+function steer(){
+  var co=COMPANIES[state.co];
+  var list=BUILDS.filter(function(b){return b.co===state.co}).sort(function(a,b){return score(b)-score(a)||b.votes.length-a.votes.length});
+  var waiting=list.filter(function(b){return b.votes.length>=THRESHOLD&&!b.decision});
+  var gems=list.filter(function(b){return!b.decision&&b.votes.length>0&&b.votes.length<THRESHOLD&&avg(b)>=2.5});
+  var shallow=list.filter(function(b){return b.votes.length>=3&&avg(b)<1.7&&!b.decision});
+  function sig(title,desc,items,note){return'<div class="sig"><h3>'+title+'</h3><p>'+desc+'</p>'+(items.length?items.map(function(b){return'<button class="sig-item" data-decide="'+b.id+'"><strong>'+esc(b.name)+'</strong><span>'+note(b)+'</span></button>'}).join(''):'<span class="none">Nothing right now</span>')+'</div>'}
+  var h='<div class="head"><div><h1>Steer '+esc(co.name)+'</h1><p class="sub">What people vote for, how much it matters to them, and where leadership points the team. Only leadership sees this page.</p></div></div>';
+  h+='<div class="signals">'+
+    sig('Waiting on a decision','Popular apps nobody has set a direction for yet.',waiting,function(b){return b.votes.length+' votes, '+relyCount(b)+' rely on it'})+
+    sig('Hidden gems','Few votes, but the people who use it depend on it.',gems,function(b){return relyCount(b)+' of '+b.votes.length+' rely on it'})+
+    sig('Popular but shallow','Lots of votes, mostly “nice to have”.',shallow,function(b){return b.votes.length+' votes, avg '+avg(b).toFixed(1)+' of 3'})+'</div>';
+  h+='<div class="tbl-wrap"><table class="tbl"><thead><tr><th>App</th><th class="num">People</th><th>How much it helps</th><th class="num">Score</th><th>Direction</th></tr></thead><tbody>';
+  list.forEach(function(b){var c={1:0,2:0,3:0};b.votes.forEach(function(u){c[lvl(b,u)]++});var n=b.votes.length||1;
+    h+='<tr><td><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><div class="sub-cell">'+esc(b.dept)+' · '+(b.status==='live'?'Live':'Try-out')+'</div></td>'+
+      '<td class="num">'+b.votes.length+'</td>'+
+      '<td><div class="mix" role="img" aria-label="'+c[3]+' rely on it, '+c[2]+' saves time, '+c[1]+' nice to have">'+(b.votes.length?'<span class="m3" style="width:'+(c[3]/n*100)+'%"></span><span class="m2" style="width:'+(c[2]/n*100)+'%"></span><span class="m1" style="width:'+(c[1]/n*100)+'%"></span>':'')+'</div>'+
+      '<div class="sub-cell">'+c[3]+' rely · '+c[2]+' save time · '+c[1]+' nice</div></td>'+
+      '<td class="num"><strong>'+score(b)+'</strong></td>'+
+      '<td>'+(b.decision?'<button class="dec-btn set" data-decide="'+b.id+'">'+esc(DEC[b.decision.kind].label)+'</button><div class="sub-cell">'+esc(PEOPLE[b.decision.by].split(' ')[0])+', '+fmtS(b.decision.t)+'</div>':'<button class="dec-btn" data-decide="'+b.id+'">Set direction</button>')+'</td></tr>'});
+  h+='</tbody></table></div><p class="legend"><span class="sw m3"></span>I rely on it (3 pts) <span class="sw m2"></span>Saves me time (2) <span class="sw m1"></span>Nice to have (1). The catalog ranks by score.</p>';
+  return h;
 }
 
 /* ---------- build page ---------- */
 function buildPage(b){
-  var n=b.votes.length,p=b.profile;
+  var n=b.votes.length,p=b.profile,mine=b.votes.indexOf(state.me)>=0;
   var h='<a class="back" href="#">← '+esc(COMPANIES[b.co].name)+' builds</a>';
   h+='<section class="hero">'+thumb(b)+'<div style="min-width:0"><h1>'+esc(b.full||b.name)+'</h1><p class="desc">'+esc(b.desc)+'</p>'+
      '<div class="actions"><button class="btn key" data-launch="'+b.id+'">Open app ↗</button>'+voteBtn(b,true)+'<button class="btn" data-share="'+b.id+'">'+SHARE+'Share</button></div>'+
+     (mine?'<p class="you-said">You said: <strong>'+IMPACT[lvl(b,state.me)]+'</strong> <button class="linkbtn" data-rate="'+b.id+'">Change</button></p>':'')+
      '<div class="byline"><span class="av" style="width:24px;height:24px;font-size:10px;background:'+COLORS.phil+'">PC</span>'+esc(PEOPLE.phil)+' · built with '+esc(b.tool)+' · '+fmt(b.up)+' · '+statusDot(b)+'</div></div></section>';
   h+='<div class="bp"><div style="min-width:0">';
-  var owner=OWNERS.indexOf(state.me)>=0;
-  if(b.critical)h+='<div class="crit-note"><span class="shield">'+SHIELD+'</span><div><strong>Marked critical</strong> by '+esc(PEOPLE[b.critical.by])+', '+fmtS(b.critical.t)+'. \u201c'+esc(b.critical.why)+'\u201d'+(owner?' <button class="linkbtn" data-uncrit="'+b.id+'">Remove</button>':'')+'</div></div>';
-  else if(owner)h+='<form class="crit-form" id="crit-form"><input type="text" id="crit-why" placeholder="Why is this critical? e.g. Required for our OSHA program" aria-label="Reason this app is critical"><button class="btn" type="submit">'+SHIELD+' Mark critical</button></form>';
-  h+='<div style="margin-top:22px">'+(b.critical&&n<THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> Marked critical, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+' without waiting for votes.</div>':n>=THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> '+n+' people voted for this, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+'.</div>':
+  var d=b.decision;
+  if(d)h+='<div class="crit-note"><span class="shield">'+(d.kind==='critical'?SHIELD:COMPASS)+'</span><div><strong>Leadership: '+esc(DEC[d.kind].label)+'.</strong> '+esc(DEC[d.kind].desc)+'. “'+esc(d.why)+'” — '+esc(PEOPLE[d.by])+', '+fmtS(d.t)+(isOwner()?' <button class="linkbtn" data-decide="'+b.id+'">Change</button>':'')+'</div></div>';
+  else if(isOwner())h+='<div style="margin-top:12px"><button class="btn" data-decide="'+b.id+'">'+COMPASS+' Set direction</button></div>';
+  var fast=d&&(d.kind==='critical'||d.kind==='priority');
+  h+='<div style="margin-top:22px">'+(fast&&n<THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> Leadership set this as '+esc(DEC[d.kind].label)+', so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+' without waiting for votes.</div>':n>=THRESHOLD?'<div class="progress-note ok"><strong>Ready for analysis.</strong> '+n+' people voted for this, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+'.</div>':
      '<div class="progress-note">'+(THRESHOLD-n)+' more vote'+(THRESHOLD-n===1?'':'s')+' until Voosa looks at how this connects to the rest of '+esc(COMPANIES[b.co].name)+'. Shared '+b.shares+' time'+(b.shares===1?'':'s')+' so far.<div class="progress"><span style="width:'+(n/THRESHOLD*100)+'%"></span></div></div>')+'</div>';
-  if(n)h+='<div class="meta" style="margin-top:12px">'+faces(b)+'<span>'+b.votes.map(function(u){return PEOPLE[u].split(' ')[0]}).join(', ')+' voted</span></div>';
+  if(n){var r=relyCount(b);h+='<div class="meta" style="margin-top:12px">'+faces(b)+'<span>'+b.votes.map(function(u){return PEOPLE[u].split(' ')[0]}).join(', ')+' voted'+(r?' · '+r+' rel'+(r===1?'ies':'y')+' on it':'')+'</span></div>'}
   h+='<h2 class="section-h">Comments'+(b.comments.length?' · '+b.comments.length:'')+'</h2><div class="comments">';
   if(!b.comments.length)h+='<p style="margin:0;color:var(--soft);font-size:14px">No comments yet. Say how you would use it.</p>';
   b.comments.forEach(function(c){h+='<div class="cmt"><div class="av" style="background:'+COLORS[c.u]+'">'+initials(c.u)+'</div><div class="body"><span class="who">'+esc(PEOPLE[c.u])+'</span><span class="when">'+fmtS(c.t)+'</span><p>'+esc(c.b)+'</p></div></div>'});
@@ -461,17 +589,18 @@ function buildPage(b){
 var app=document.getElementById('app');
 function current(){var b=byId(location.hash.slice(1));if(b&&b.co!==state.co){state.co=b.co;coSel.value=b.co;fillMe()}return b}
 function render(){
-  var b=current();
-  app.innerHTML=b?buildPage(b):catalog();
-  var cf=document.getElementById('crit-form');if(b&&cf)cf.onsubmit=function(e){e.preventDefault();var w=document.getElementById('crit-why').value.trim();if(!w){toast('Add a reason so people know why it matters');return}b.critical={by:state.me,t:new Date().toISOString().slice(0,10),why:w};save();render();toast(b.name+' marked critical')};
-  if(b){document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:new Date().toISOString().slice(0,10),b:v});save();render();toast('Comment posted')}}
-  else{document.getElementById('upload').onclick=function(){toast('Upload is spec 02. New builds land here under New.')};
-    var st=document.getElementById('status');st.value=state.status;st.onchange=function(){state.status=st.value;render()}}
+  var b=current(),st=location.hash==='#steer'&&isOwner();
+  nav();
+  app.innerHTML=b?buildPage(b):st?steer():catalog();
+  if(b){document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:today(),b:v});save();render();toast('Comment posted')}}
+  else if(!st){document.getElementById('upload').onclick=function(){toast('Upload is spec 02. New builds land here under New.')};
+    var ss=document.getElementById('status');ss.value=state.status;ss.onchange=function(){state.status=ss.value;render()}}
 }
 app.addEventListener('click',function(e){
-  var t=e.target.closest('[data-uncrit],[data-vote],[data-open],[data-share],[data-sort],[data-dept],[data-launch]');if(!t)return;
-  if(t.dataset.uncrit){byId(t.dataset.uncrit).critical=null;save();render();toast('Critical flag removed')}
-  else if(t.dataset.vote){var b=byId(t.dataset.vote),i=b.votes.indexOf(state.me);if(i>=0){b.votes.splice(i,1);toast('Vote removed')}else{b.votes.push(state.me);toast(b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted for '+b.name)}save();render()}
+  var t=e.target.closest('[data-decide],[data-rate],[data-vote],[data-open],[data-share],[data-sort],[data-dept],[data-launch]');if(!t)return;
+  if(t.dataset.decide){openDecide(byId(t.dataset.decide))}
+  else if(t.dataset.rate){openRate(byId(t.dataset.rate))}
+  else if(t.dataset.vote){var b=byId(t.dataset.vote),i=b.votes.indexOf(state.me);if(i>=0){b.votes.splice(i,1);delete b.impact[state.me];save();render();toast('Vote removed')}else openRate(b)}
   else if(t.dataset.launch){toast('Opens '+byId(t.dataset.launch).name+' in a new tab once it’s uploaded for real.')}
   else if(t.dataset.open){location.hash=t.dataset.open}
   else if(t.dataset.share){openShare(byId(t.dataset.share))}
@@ -480,6 +609,31 @@ app.addEventListener('click',function(e){
 });
 window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
 document.getElementById('reset').onclick=function(){apply(JSON.parse(SEED));save();render();toast('Sample data reset')};
+
+/* ---------- vote with impact ---------- */
+var rateDlg=document.getElementById('rate'),rateB=null;
+function openRate(b){rateB=b;document.getElementById('rate-title').textContent='How much does '+b.name+' help you?';
+  rateDlg.querySelectorAll('[data-level]').forEach(function(x){x.setAttribute('aria-pressed',b.votes.indexOf(state.me)>=0&&lvl(b,state.me)==x.dataset.level)});
+  if(rateDlg.showModal)rateDlg.showModal();else rateDlg.setAttribute('open','')}
+rateDlg.querySelectorAll('[data-level]').forEach(function(x){x.onclick=function(){var b=rateB,L=+x.dataset.level,had=b.votes.indexOf(state.me)>=0;
+  if(!had)b.votes.push(state.me);b.impact[state.me]=L;save();rateDlg.close();render();
+  toast(had?'Updated: '+IMPACT[L]:(b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted: '+IMPACT[L]))}});
+document.getElementById('rate-cancel').onclick=function(){rateDlg.close()};
+
+/* ---------- leadership direction ---------- */
+var decDlg=document.getElementById('decide'),decB=null,decKind=null;
+function setKind(k){decKind=k;decDlg.querySelectorAll('[data-kind]').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.kind===k)})}
+function openDecide(b){if(!isOwner())return;decB=b;document.getElementById('dec-title').textContent='Set direction for '+b.name;
+  document.getElementById('dec-facts').textContent=b.votes.length+' vote'+(b.votes.length===1?'':'s')+', '+relyCount(b)+' rely on it, score '+score(b)+'.';
+  setKind(b.decision?b.decision.kind:null);document.getElementById('dec-why').value=b.decision?b.decision.why:'';
+  document.getElementById('dec-clear').hidden=!b.decision;
+  if(decDlg.showModal)decDlg.showModal();else decDlg.setAttribute('open','')}
+decDlg.querySelectorAll('[data-kind]').forEach(function(x){x.onclick=function(){setKind(x.dataset.kind)}});
+document.getElementById('dec-cancel').onclick=function(){decDlg.close()};
+document.getElementById('dec-clear').onclick=function(){decB.decision=null;save();decDlg.close();render();toast('Direction cleared')};
+document.getElementById('dec-form').onsubmit=function(e){e.preventDefault();var w=document.getElementById('dec-why').value.trim();
+  if(!decKind){toast('Pick a direction');return}if(!w){toast('Add a reason so the team knows why');return}
+  decB.decision={kind:decKind,by:state.me,t:today(),why:w};save();decDlg.close();render();toast(decB.name+': '+DEC[decKind].label)};
 
 /* ---------- share ---------- */
 var dlg=document.getElementById('share'),shareB=null,channel='link';
