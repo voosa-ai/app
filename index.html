@@ -295,7 +295,7 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
     <h3 id="dec-title">Set direction</h3>
     <p class="lede" id="dec-facts"></p>
     <div class="levels">
-      <button type="button" class="level" data-kind="critical"><strong>Critical</strong><span>Pinned above the ranking and sent to analysis now</span></button>
+      <button type="button" class="level" data-kind="critical"><strong>Critical</strong><span>Must keep running. Sent to analysis now</span></button>
       <button type="button" class="level" data-kind="priority"><strong>Priority</strong><span>Next in line to connect to company data and go Live</span></button>
       <button type="button" class="level" data-kind="watch"><strong>Watch</strong><span>Promising. Check back as more people try it</span></button>
       <button type="button" class="level" data-kind="notnow"><strong>Not now</strong><span>Not a fit for current goals. Stays available to try</span></button>
@@ -417,7 +417,7 @@ var SEED_IMPACT={
   'adventure-weaver':{phil:2,jen:2,doug:1,kids:2},
   'forest-atlas':{phil:2}
 };
-var DEC={critical:{label:'Critical',desc:'Pinned above the ranking and sent to analysis now'},
+var DEC={critical:{label:'Critical',desc:'Must keep running, so it goes to analysis now'},
   priority:{label:'Priority',desc:'Next in line to connect to company data and go Live'},
   watch:{label:'Watch',desc:'Promising. Check back as more people try it'},
   notnow:{label:'Not now',desc:'Not a fit for current goals. Stays available to try'}};
@@ -519,7 +519,6 @@ function catalog(){
      '<select class="status-sel" id="status" aria-label="Status"><option value="all">Any status</option><option value="tryout">Try-out</option><option value="live">Live</option></select></div>';
   if(!list.length)return h+'<div class="empty">No builds match these filters yet.</div>';
   var crit=[];
-  if(state.sort==='top'){crit=list.filter(function(b){return b.decision&&b.decision.kind==='critical'});list=list.filter(function(b){return!(b.decision&&b.decision.kind==='critical')})}
   if(crit.length){h+='<section class="crit-lane" aria-label="Critical apps"><div class="lane-h"><span class="shield">'+SHIELD+'</span>Critical <small>Set by leadership, regardless of votes</small></div>';
     crit.forEach(function(b){h+=row(b,'',true)});h+='</section>'}
   var top=state.sort==='top'?list.slice(0,Math.min(3,list.length)):[];
