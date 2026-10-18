@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Voosa Catalog</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: blueprint-paper workspace; sticky top bar, filter rail above a card grid; build page as a two-column sheet */
+:root{
+  --bg:#F6F4EF; --surface:#FFFFFF; --ink:#152B62; --ink-soft:#4A5878; --mortar:#8E949C;
+  --grid:#D9E3F6; --line:#E2DDD2; --key:#F0544F; --key-ink:#C7362F; --bar:#152B62; --bar-ink:#FFFFFF;
+  --live-bg:#E3F1E8; --live-ink:#1E6B3F; --try-bg:#FFF1D9; --try-ink:#8A5A00; --ready-bg:#FDE4E2;
+  --shadow:0 1px 0 rgba(21,43,98,.06),0 6px 18px -10px rgba(21,43,98,.25);
+  --f-body:'Sora',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1A3A; --surface:#15244C; --ink:#E8EDF8; --ink-soft:#A9B6D3; --mortar:#8792AA;
+  --grid:#1C2D5A; --line:#263867; --key:#F0544F; --key-ink:#FF8A84; --bar:#0A1430; --bar-ink:#FFFFFF;
+  --live-bg:#163D2A; --live-ink:#8FDDB0; --try-bg:#3D3014; --try-ink:#F3C978; --ready-bg:#4A1F27;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 8px 22px -12px rgba(0,0,0,.6); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1A3A; --surface:#15244C; --ink:#E8EDF8; --ink-soft:#A9B6D3; --mortar:#8792AA;
+  --grid:#1C2D5A; --line:#263867; --key:#F0544F; --key-ink:#FF8A84; --bar:#0A1430; --bar-ink:#FFFFFF;
+  --live-bg:#163D2A; --live-ink:#8FDDB0; --try-bg:#3D3014; --try-ink:#F3C978; --ready-bg:#4A1F27;
+  --shadow:0 1px 0 rgba(0,0,0,.2),0 8px 22px -12px rgba(0,0,0,.6); color-scheme:dark}
+
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:32px 32px;background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bar)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--key);outline-offset:2px}
+.mono{font-family:var(--f-mono)}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bar);color:var(--bar-ink)}
+.bar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding-block:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;font-weight:600;font-size:22px;letter-spacing:-1px}
+.bar-spacer{flex:1}
+.pick{display:flex;align-items:center;gap:8px;font-size:12px}
+.pick label{font-family:var(--f-mono);text-transform:uppercase;letter-spacing:1.5px;color:#AFC0E4}
+.pick select{background:rgba(255,255,255,.08);color:#FFFFFF;border:1px solid rgba(217,227,246,.3);border-radius:8px;padding:6px 10px;font-size:14px}
+.pick select option{color:#152B62;background:#FFFFFF}
+.sample{background:var(--key);color:#FFFFFF;font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:4px}
+
+/* page head */
+.head{padding-block:28px 8px;display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:2.5px;text-transform:uppercase;color:var(--key-ink)}
+h1{margin:4px 0 0;font-size:clamp(28px,4.5vw,40px);line-height:1.1;letter-spacing:-1.2px;text-wrap:balance}
+.lede{margin:6px 0 0;color:var(--ink-soft);max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:10px 18px;font-weight:600;font-size:14px;border:1px solid var(--ink);background:transparent;text-decoration:none;color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.btn.key{background:var(--key);border-color:var(--key);color:#FFFFFF}
+.btn:hover{filter:brightness(1.08)}
+
+/* toolbar */
+.tools{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;padding-block:16px;border-bottom:1px solid var(--line)}
+.seg{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.seg .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mortar);margin-right:4px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;color:var(--ink-soft)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.count{font-family:var(--f-mono);font-size:12px;color:var(--mortar);margin-left:auto}
+
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;padding-block:20px 48px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);display:flex;flex-direction:column;min-width:0;transition:transform .15s ease}
+.card:hover{transform:translateY(-2px)}
+.card-main{all:unset;cursor:pointer;display:flex;flex-direction:column;gap:10px;padding:18px 18px 14px;flex:1}
+.card-main:focus-visible{outline:2px solid var(--key);outline-offset:-2px;border-radius:12px}
+.card-top{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.card h3{margin:0;font-size:18px;line-height:1.25;letter-spacing:-.4px;color:var(--ink)}
+.card p{margin:0;color:var(--ink-soft);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.meta{font-family:var(--f-mono);font-size:12px;color:var(--mortar)}
+.pill{font-family:var(--f-mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:4px;font-weight:500}
+.pill.live{background:var(--live-bg);color:var(--live-ink)}
+.pill.try{background:var(--try-bg);color:var(--try-ink)}
+.pill.ready{background:var(--ready-bg);color:var(--key-ink)}
+.dept{font-family:var(--f-mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink-soft)}
+.card-foot{display:flex;align-items:center;gap:14px;border-top:1px dashed var(--line);padding:10px 14px 10px 10px;font-size:13px;color:var(--ink-soft)}
+.vote{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg);border-radius:999px;padding:5px 12px 5px 8px;font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.vote svg{width:16px;height:16px}
+.vote[aria-pressed="true"]{background:var(--key);border-color:var(--key);color:#FFFFFF}
+.stat{display:inline-flex;align-items:center;gap:5px;font-variant-numeric:tabular-nums}
+.stat svg{width:15px;height:15px;opacity:.75}
+.share-mini{margin-left:auto;border:0;background:transparent;color:var(--ink-soft);display:inline-flex;align-items:center;gap:5px;padding:4px 6px;border-radius:6px;font-size:13px}
+.share-mini:hover{color:var(--key-ink)}
+.empty{grid-column:1/-1;text-align:center;padding:48px 16px;color:var(--ink-soft)}
+
+/* build page */
+.back{display:inline-flex;gap:6px;align-items:center;font-size:14px;color:var(--ink-soft);text-decoration:none;padding-top:20px}
+.back:hover{color:var(--ink)}
+.bp-head{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:flex-start;justify-content:space-between;padding-block:12px 20px;border-bottom:1px solid var(--line)}
+.bp-head .left{display:flex;flex-direction:column;gap:8px;min-width:0;flex:1 1 420px}
+.bp-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.bp{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px;padding-block:24px 56px}
+@media (max-width:860px){.bp{grid-template-columns:minmax(0,1fr)}}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:var(--shadow);min-width:0}
+.sheet h2{margin:0 0 12px;font-size:13px;font-family:var(--f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--mortar);font-weight:500}
+.desc{margin:0;font-size:16px;max-width:65ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:18px}
+.fact{border-top:1px solid var(--line);padding-top:8px}
+.fact dt{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mortar)}
+.fact dd{margin:2px 0 0;font-weight:600;font-variant-numeric:tabular-nums}
+.profile{align-self:start;border:1.5px solid var(--ink);position:relative;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:16px 16px;background-color:var(--surface)}
+.profile .stamp{position:absolute;top:-11px;right:14px;background:var(--key);color:#FFFFFF;font-family:var(--f-mono);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:3px}
+.profile dl{margin:0;display:flex;flex-direction:column;gap:12px}
+.profile dt{font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--key-ink)}
+.profile dd{margin:2px 0 0;font-size:14px;background:var(--surface);}
+.profile .note{margin:14px 0 0;font-size:12px;color:var(--mortar)}
+.ready-box{display:flex;gap:10px;align-items:flex-start;background:var(--ready-bg);border-radius:10px;padding:12px 14px;margin-top:16px;font-size:14px}
+.ready-box svg{flex:none;margin-top:2px}
+.progress{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress span{display:block;height:100%;background:var(--key)}
+
+/* comments */
+.comments{display:flex;flex-direction:column;gap:14px;margin-top:4px}
+.cmt{display:flex;gap:12px;min-width:0}
+.av{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:700;color:#FFFFFF;background:var(--ink)}
+.cmt .body{min-width:0}
+.cmt .who{font-weight:600;font-size:14px}
+.cmt .when{font-family:var(--f-mono);font-size:11px;color:var(--mortar);margin-left:6px}
+.cmt p{margin:2px 0 0;font-size:14px;color:var(--ink-soft);overflow-wrap:anywhere}
+.add-cmt{display:flex;flex-direction:column;gap:8px;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+textarea,input[type=text]{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;width:100%;box-sizing:border-box;resize:vertical}
+.add-cmt .row{display:flex;justify-content:flex-end}
+
+/* share dialog */
+dialog{border:0;border-radius:14px;padding:0;max-width:min(460px,calc(100vw - 32px));width:100%;background:var(--surface);color:var(--ink);box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+dialog::backdrop{background:rgba(10,20,48,.55)}
+.dlg{padding:22px;display:flex;flex-direction:column;gap:14px}
+.dlg h3{margin:0;font-size:20px;letter-spacing:-.5px}
+.dlg .sub{margin:0;font-size:13px;color:var(--ink-soft)}
+.channels{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ch{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:10px 4px;font-size:12.5px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.ch[aria-pressed="true"]{border-color:var(--key);box-shadow:inset 0 0 0 1px var(--key);color:var(--key-ink)}
+.ch svg{width:20px;height:20px}
+.linkrow{display:flex;gap:8px}
+.linkrow input{font-family:var(--f-mono);font-size:12.5px}
+.lock{font-size:12px;color:var(--mortar);display:flex;gap:6px;align-items:center}
+.dlg .row{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.field label{display:block;font-family:var(--f-mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--mortar);margin-bottom:6px}
+
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(20px);opacity:0;background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:14px;transition:.2s;pointer-events:none;max-width:calc(100vw - 32px);z-index:20}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.foot{font-family:var(--f-mono);font-size:11.5px;color:var(--mortar);padding-block:0 32px;display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:space-between}
+.linkbtn{border:0;background:none;color:var(--ink-soft);text-decoration:underline;padding:0;font:inherit}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg width="40" height="22" viewBox="0 32 200 112" aria-hidden="true"><g data-arch="#FFFFFF"></g></svg>
+      voosa
+    </a>
+    <span class="sample">Sample data</span>
+    <span class="bar-spacer"></span>
+    <div class="pick"><label for="co">Company</label><select id="co"></select></div>
+    <div class="pick"><label for="me">Signed in as</label><select id="me"></select></div>
+  </div>
+</header>
+
+<main id="app" class="wrap"></main>
+
+<div class="wrap foot">
+  <span>Preview of spec 04 · Catalog and voting · nothing here is sent anywhere</span>
+  <button class="linkbtn" id="reset">Reset sample votes and comments</button>
+</div>
+
+<dialog id="share" aria-labelledby="share-title">
+  <form class="dlg" method="dialog" id="share-form">
+    <h3 id="share-title">Share</h3>
+    <p class="sub" id="share-sub"></p>
+    <div class="channels" role="group" aria-label="How to share">
+      <button type="button" class="ch" data-ch="link" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>Copy link</button>
+      <button type="button" class="ch" data-ch="email" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email</button>
+      <button type="button" class="ch" data-ch="teams" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M7 10h4M9 10v5"/><circle cx="18" cy="8" r="2"/><path d="M15 13h6v3a3 3 0 0 1-6 0"/></svg>Teams</button>
+      <button type="button" class="ch" data-ch="slack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v8M15 13v8M3 15h8M13 9h8"/></svg>Slack</button>
+    </div>
+    <div class="field" id="to-field" hidden>
+      <label for="share-to">To (coworkers at <span id="share-co"></span>)</label>
+      <input type="text" id="share-to" placeholder="Name or email">
+    </div>
+    <div class="field">
+      <label for="share-note">Note (optional)</label>
+      <textarea id="share-note" rows="2" placeholder="This saves me an hour a week, vote for it"></textarea>
+    </div>
+    <div class="linkrow" id="link-row">
+      <input type="text" id="share-link" readonly aria-label="Build link">
+    </div>
+    <div class="lock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Only signed-in members of this company can open the link.</div>
+    <div class="row">
+      <button type="button" class="btn" id="share-cancel">Cancel</button>
+      <button type="submit" class="btn key" id="share-go">Copy link</button>
+    </div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+/* ---------- logo ---------- */
+var CY=104,BASE=136,RED='#F0544F';
+function pt(r,d){var t=d*Math.PI/180;return[(100+r*Math.cos(t)).toFixed(2),(CY-r*Math.sin(t)).toFixed(2)]}
+function wedge(R,r,a1,a2){var p1=pt(R,a1),p2=pt(R,a2),p3=pt(r,a2),p4=pt(r,a1);return'M'+p1[0]+' '+p1[1]+' A'+R+' '+R+' 0 0 1 '+p2[0]+' '+p2[1]+' L'+p3[0]+' '+p3[1]+' A'+r+' '+r+' 0 0 0 '+p4[0]+' '+p4[1]+' Z'}
+function arch(stone){var n=5,gap=6,key=44,span=(180-gap*(n-1)-key)/(n-1),a=180,s='';for(var i=0;i<n;i++){var k=i===2,w=k?key:span;s+='<path d="'+wedge(64,26,a,a-w)+'" fill="'+(k?RED:stone)+'"/>';a=a-w-gap}
+s+='<path d="M36 '+(CY+5)+' H74 V'+BASE+' H36 Z" fill="'+stone+'"/><path d="M126 '+(CY+5)+' H164 V'+BASE+' H126 Z" fill="'+stone+'"/>';return s}
+document.querySelectorAll('g[data-arch]').forEach(function(g){g.innerHTML=arch(g.getAttribute('data-arch'))});
+
+/* ---------- sample data ---------- */
+var THRESHOLD=5;
+var COMPANIES={
+  omitz:{name:'Omitz',depts:['Field Safety','Training','Regulatory'],
+    members:['phil','doug','maria','jordan','priya','sam','tom']},
+  personal:{name:'Phil personal',depts:['Work','Money','Family','Outdoors'],
+    members:['phil','doug','jen','kids']}
+};
+var PEOPLE={phil:'Phil Clark',doug:'Doug Stillings',maria:'Maria Lopez',jordan:'Jordan Reyes',priya:'Priya Shah',sam:'Sam Okafor',tom:'Tom Becker',jen:'Jen Clark',kids:'The kids'};
+var COLORS={phil:'#152B62',doug:'#2F6B8E',maria:'#7A4FA0',jordan:'#B5582A',priya:'#2E7D5B',sam:'#8E5A2B',tom:'#5B6B7A',jen:'#A0456E',kids:'#C7362F'};
+
+function d(s){return new Date(s+'T15:00:00Z').getTime()}
+var BUILDS=[
+ {id:'ethics-compass',co:'omitz',name:'Ethics Compass',full:'Ethics Compass Interactive Training',dept:'Training',tool:'Lovable',status:'live',up:d('2026-08-12'),
+  desc:'Scenario-based ethics training. Staff walk through real consulting dilemmas, pick a response, and see why it holds up (or does not) under professional codes. Completion is recorded for each person.',
+  votes:['phil','maria','jordan','priya','sam','tom'],shares:4,
+  profile:{purpose:'Replace a yearly slide deck with short, realistic ethics scenarios people actually remember.',users:'All consulting staff, once a year and at onboarding.',stake:'HR, Principal consultants',step:'Annual training and new-hire onboarding',data:'In: staff list. Out: completion record per person.',work:'Slide deck and a sign-in sheet.'},
+  comments:[{u:'maria',t:'2026-09-02',b:'Way better than the old deck. The conflict-of-interest scenario started a real conversation in our team meeting.'},{u:'jordan',t:'2026-09-10',b:'Can it export completions for our client audits?'}]},
+ {id:'hydrogen-safety',co:'omitz',name:'Hydrogen Safety Zone',dept:'Field Safety',tool:'Lovable',status:'live',up:d('2026-07-28'),
+  desc:'Calculates hazardous-area separation distances around hydrogen storage and dispensing, with the code citation behind each distance so field staff can show their work.',
+  votes:['phil','doug','sam','tom','priya'],shares:6,
+  profile:{purpose:'Give field staff a fast, cited answer for hydrogen setback distances on site.',users:'Field consultants during site assessments, a few times a month.',stake:'Safety and compliance lead, clients with fuel-cell fleets',step:'Site assessment, before writing findings',data:'In: storage volume, pressure, layout. Out: zone distances with citations.',work:'Looking up NFPA 2 tables by hand.'},
+  comments:[{u:'sam',t:'2026-08-20',b:'Used this on the forklift charging job last week. Saved a lot of back and forth.'}]},
+ {id:'bess-kit',co:'omitz',name:'BESS Compliance Kit',dept:'Field Safety',tool:'Lovable',status:'tryout',up:d('2026-09-30'),
+  desc:'Checklist and reference kit for battery energy storage system sites: spacing, ventilation, signage and emergency response items, each tied to the governing code section.',
+  votes:['phil','tom','priya'],shares:2,
+  profile:{purpose:'Make BESS site reviews consistent across consultants.',users:'Field consultants reviewing battery storage installs.',stake:'Clients installing BESS, local fire marshals',step:'Site review and report writing',data:'In: site details. Out: completed checklist with citations.',work:'A Word checklist that drifts between versions.'},
+  comments:[{u:'tom',t:'2026-10-04',b:'Would love a photo upload per checklist item.'}]},
+ {id:'glove-guide',co:'omitz',name:'Glove Guide',dept:'Field Safety',tool:'Claude',status:'tryout',up:d('2026-10-06'),
+  desc:'Pick a chemical and a task, get the right glove material, thickness and breakthrough time, with the source data shown.',
+  votes:['phil','jordan'],shares:1,
+  profile:{purpose:'Answer "which glove for this chemical?" in seconds, with the data behind it.',users:'Industrial hygienists and field techs.',stake:'Safety and compliance lead',step:'PPE selection during exposure assessments',data:'In: chemical, task. Out: glove recommendation and breakthrough data.',work:'Manufacturer PDFs and memory.'},
+  comments:[]},
+ {id:'ecfr-scraper',co:'omitz',name:'eCFR Scraper',dept:'Regulatory',tool:'Claude',status:'tryout',up:d('2026-10-14'),
+  desc:'Pulls current regulation text from the eCFR and flags sections that changed since the last pull, so the other compliance tools stay current.',
+  votes:['phil'],shares:0,
+  profile:{purpose:'Keep regulation text current in one place instead of each app copying it.',users:'Runs on a schedule; read by the compliance tools.',stake:'Every app that cites a regulation',step:'Background data source',data:'In: list of CFR parts. Out: current text and a change log.',work:'Copying regulation text into each app by hand.'},
+  comments:[{u:'doug',t:'2026-10-15',b:'This is the one the map should connect to everything else.'}]},
+ {id:'linkedinterviewer',co:'personal',name:'LinkedInterviewer',dept:'Work',tool:'Lovable',status:'tryout',up:d('2026-06-18'),
+  desc:'Practice interviews built from a LinkedIn job post. Asks the questions that role is likely to get and gives feedback on your answers.',
+  votes:['phil','jen'],shares:1,
+  profile:{purpose:'Prepare for interviews with questions that match the actual job.',users:'Me, before interviews.',stake:'None yet',step:'Interview prep',data:'In: job post, my answers. Out: feedback.',work:'Generic interview question lists.'},
+  comments:[]},
+ {id:'pay-planner',co:'personal',name:'My Pay Planner',dept:'Money',tool:'Lovable',status:'live',up:d('2026-05-09'),
+  desc:'Maps each paycheck to the bills it has to cover, so you can see what is left before the next one lands.',
+  votes:['phil','jen','doug'],shares:2,
+  profile:{purpose:'Know what each paycheck has to cover.',users:'Phil and Jen, every payday.',stake:'Household',step:'Monthly budgeting',data:'In: paychecks, bills. Out: what is left per period.',work:'A spreadsheet.'},
+  comments:[{u:'jen',t:'2026-06-01',b:'Can it show the kids activity costs too?'}]},
+ {id:'kids-budget',co:'personal',name:'Kids Activity Budget',dept:'Money',tool:'Codex',status:'tryout',up:d('2026-09-14'),
+  desc:'Tracks sign-up fees, gear and travel for each kid’s activities across the season.',
+  votes:['jen'],shares:0,
+  profile:{purpose:'See what each kid’s activities really cost.',users:'Phil and Jen, at sign-up time.',stake:'Household',step:'Seasonal planning',data:'In: activities, costs. Out: totals per kid and season.',work:'Receipts in a drawer.'},
+  comments:[]},
+ {id:'bow-hunter-math',co:'personal',name:'Bow Hunter Math',dept:'Family',tool:'Claude',status:'tryout',up:d('2026-08-03'),
+  desc:'Math practice dressed up as bow hunting: range, angle and arrow drop problems at the right grade level.',
+  votes:['kids','phil'],shares:0,
+  profile:{purpose:'Make math practice something the kids ask for.',users:'The kids, a few times a week.',stake:'Teachers',step:'Homework time',data:'In: grade level. Out: score and progress.',work:'Worksheets.'},
+  comments:[{u:'kids',t:'2026-08-21',b:'More levels please!!'}]},
+ {id:'spell-it-out',co:'personal',name:'Spell It Out',dept:'Family',tool:'Claude',status:'tryout',up:d('2026-09-02'),
+  desc:'Spelling practice that reads each word aloud and keeps the hard ones in rotation until they stick.',
+  votes:['kids'],shares:0,
+  profile:{purpose:'Weekly spelling list practice without a parent reading every word.',users:'The kids, weekly.',stake:'Teachers',step:'Homework time',data:'In: weekly word list. Out: words mastered.',work:'Parent reads the list aloud.'},
+  comments:[]},
+ {id:'adventure-weaver',co:'personal',name:'Adventure Weaver',dept:'Outdoors',tool:'Lovable',status:'live',up:d('2026-07-04'),
+  desc:'Plans a weekend trip from a few preferences: trailheads, drive time, camp spots and a packing list.',
+  votes:['phil','jen','doug','kids','phil2'],shares:3,
+  profile:{purpose:'Turn "let’s go somewhere this weekend" into a plan.',users:'The family, before trips.',stake:'None',step:'Trip planning',data:'In: preferences, dates. Out: itinerary and packing list.',work:'Browser tabs and group texts.'},
+  comments:[]},
+ {id:'forest-atlas',co:'personal',name:'Forest Atlas',dept:'Outdoors',tool:'Codex',status:'tryout',up:d('2026-10-10'),
+  desc:'A map of nearby national forest land with trails, roads and dispersed camping areas.',
+  votes:['phil'],shares:0,
+  profile:{purpose:'One map for where we are allowed to go and camp.',users:'The family, trip planning.',stake:'None',step:'Trip planning',data:'In: map layers. Out: trails and camp areas.',work:'Several agency websites.'},
+  comments:[]}
+];
+// tidy sample: one vote per person
+BUILDS.forEach(function(b){b.votes=b.votes.filter(function(v){return PEOPLE[v]})});
+var SEED=JSON.stringify(BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments}}));
+
+/* ---------- state ---------- */
+var KEY='voosa-catalog-v1';
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds){apply(s.builds)}return s||{}}catch(e){return{}}}
+function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.shares=x.shares;b.comments=x.comments}})}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(function(b){return{id:b.id,votes:b.votes,shares:b.shares,comments:b.comments}})}))}catch(e){}}
+function byId(id){for(var i=0;i<BUILDS.length;i++)if(BUILDS[i].id===id)return BUILDS[i]}
+var saved=load();
+var state={co:saved.co||'omitz',me:saved.me||'phil',sort:saved.sort||'votes',dept:'all',status:'all'};
+
+/* ---------- helpers ---------- */
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function initials(u){return PEOPLE[u].split(' ').map(function(w){return w[0]}).join('').slice(0,2)}
+function fmt(t){return new Date(t).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function fmtS(s){return fmt(new Date(s+'T15:00:00Z'))}
+var I={
+  up:'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 4 3 15h6v5h6v-5h6z"/></svg>',
+  cmt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"/></svg>',
+  share:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12v7h16v-7M12 3v12M7 8l5-5 5 5"/></svg>',
+  flag:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 21V4h11l-2 4 2 4H5"/></svg>'
+};
+function statusPill(b){return b.status==='live'?'<span class="pill live">Live</span>':'<span class="pill try">Try-out</span>'}
+function readyPill(b){return b.votes.length>=THRESHOLD?'<span class="pill ready">Ready for analysis</span>':''}
+var toastT;function toast(m){var t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove('on')},2600)}
+
+/* ---------- pickers ---------- */
+var coSel=document.getElementById('co'),meSel=document.getElementById('me');
+coSel.innerHTML=Object.keys(COMPANIES).map(function(k){return'<option value="'+k+'">'+COMPANIES[k].name+'</option>'}).join('');
+function fillMe(){var m=COMPANIES[state.co].members;if(m.indexOf(state.me)<0)state.me='phil';meSel.innerHTML=m.map(function(u){return'<option value="'+u+'">'+PEOPLE[u]+'</option>'}).join('');meSel.value=state.me}
+coSel.value=state.co;fillMe();
+coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();location.hash='';render()};
+meSel.onchange=function(){state.me=meSel.value;save();render()};
+
+/* ---------- catalog ---------- */
+function catalog(){
+  var co=COMPANIES[state.co];
+  var list=BUILDS.filter(function(b){return b.co===state.co&&(state.dept==='all'||b.dept===state.dept)&&(state.status==='all'||b.status===state.status)});
+  list.sort(state.sort==='votes'?function(a,b){return b.votes.length-a.votes.length||b.up-a.up}:function(a,b){return b.up-a.up});
+  var total=BUILDS.filter(function(b){return b.co===state.co}).length;
+  function chip(group,val,label){return'<button class="chip" data-'+group+'="'+esc(val)+'" aria-pressed="'+(state[group]===val)+'">'+esc(label)+'</button>'}
+  var h='<div class="head"><div><div class="eyebrow">'+esc(co.name)+' · Catalog</div><h1>Every build at '+esc(co.name)+'</h1><p class="lede">Vote for the tools that help your work. Builds with '+THRESHOLD+' or more votes are flagged for analysis.</p></div>'+
+    '<button class="btn primary" id="upload">+ Upload a build</button></div>';
+  h+='<div class="tools">'+
+    '<div class="seg"><span class="lbl">Sort</span>'+chip('sort','votes','Most votes')+chip('sort','newest','Newest')+'</div>'+
+    '<div class="seg"><span class="lbl">Department</span>'+chip('dept','all','All')+co.depts.map(function(d){return chip('dept',d,d)}).join('')+'</div>'+
+    '<div class="seg"><span class="lbl">Status</span>'+chip('status','all','All')+chip('status','tryout','Try-out')+chip('status','live','Live')+'</div>'+
+    '<span class="count">'+list.length+' of '+total+' builds</span></div>';
+  h+='<div class="grid">';
+  if(!list.length)h+='<div class="empty">No builds match these filters yet.</div>';
+  list.forEach(function(b){
+    var mine=b.votes.indexOf(state.me)>=0;
+    h+='<article class="card">'+
+      '<button class="card-main" data-open="'+b.id+'" aria-label="Open '+esc(b.name)+'">'+
+        '<div class="card-top">'+statusPill(b)+readyPill(b)+'</div>'+
+        '<h3>'+esc(b.name)+'</h3><p>'+esc(b.desc)+'</p>'+
+        '<div class="meta"><span class="dept">'+esc(b.dept)+'</span> · '+esc(PEOPLE.phil)+' · '+esc(b.tool)+'</div>'+
+      '</button>'+
+      '<div class="card-foot">'+
+        '<button class="vote" data-vote="'+b.id+'" aria-pressed="'+mine+'" aria-label="'+(mine?'Remove your vote':'Upvote')+', '+b.votes.length+' votes">'+I.up+b.votes.length+'</button>'+
+        '<span class="stat" title="Comments">'+I.cmt+b.comments.length+'</span>'+
+        (b.shares?'<span class="stat meta">shared '+b.shares+'×</span>':'')+
+        '<button class="share-mini" data-share="'+b.id+'">'+I.share+'Share</button>'+
+      '</div></article>';
+  });
+  return h+'</div>';
+}
+
+/* ---------- build page ---------- */
+function buildPage(b){
+  var mine=b.votes.indexOf(state.me)>=0,p=b.profile,n=b.votes.length;
+  var h='<a class="back" href="#">← All '+esc(COMPANIES[b.co].name)+' builds</a>';
+  h+='<div class="bp-head"><div class="left"><div class="card-top">'+statusPill(b)+readyPill(b)+'<span class="dept">'+esc(b.dept)+'</span></div>'+
+     '<h1>'+esc(b.full||b.name)+'</h1><div class="meta">Built by '+esc(PEOPLE.phil)+' with '+esc(b.tool)+' · uploaded '+fmt(b.up)+'</div></div>'+
+     '<div class="bp-actions"><button class="vote" data-vote="'+b.id+'" aria-pressed="'+mine+'" style="padding:9px 16px 9px 12px">'+I.up+(mine?'Voted · ':'Upvote · ')+n+'</button>'+
+     '<button class="btn" data-share="'+b.id+'">'+I.share+'Share</button>'+
+     '<button class="btn key" id="open-app">Open '+esc(b.name)+' ↗</button></div></div>';
+  h+='<div class="bp"><div style="display:flex;flex-direction:column;gap:24px;min-width:0">';
+  h+='<section class="sheet"><h2>About this build</h2><p class="desc">'+esc(b.desc)+'</p>'+
+     '<dl class="facts"><div class="fact"><dt>Votes</dt><dd>'+n+'</dd></div><div class="fact"><dt>Comments</dt><dd>'+b.comments.length+'</dd></div><div class="fact"><dt>Shared</dt><dd>'+b.shares+' times</dd></div><div class="fact"><dt>Built with</dt><dd>'+esc(b.tool)+'</dd></div></dl>';
+  if(n>=THRESHOLD)h+='<div class="ready-box">'+I.flag+'<div><strong>Ready for analysis.</strong> This build passed '+THRESHOLD+' votes, so Voosa will look at how it connects to the rest of '+esc(COMPANIES[b.co].name)+'.</div></div>';
+  else h+='<div style="margin-top:16px;font-size:13px;color:var(--ink-soft)">'+(THRESHOLD-n)+' more vote'+(THRESHOLD-n===1?'':'s')+' until this build is flagged for analysis.<div class="progress"><span style="width:'+(n/THRESHOLD*100)+'%"></span></div></div>';
+  h+='</section>';
+  h+='<section class="sheet"><h2>Comments · '+b.comments.length+'</h2><div class="comments">';
+  if(!b.comments.length)h+='<p style="margin:0;color:var(--ink-soft);font-size:14px">No comments yet. Say how you would use it.</p>';
+  b.comments.forEach(function(c){h+='<div class="cmt"><div class="av" style="background:'+COLORS[c.u]+'">'+initials(c.u)+'</div><div class="body"><span class="who">'+esc(PEOPLE[c.u])+'</span><span class="when">'+fmtS(c.t)+'</span><p>'+esc(c.b)+'</p></div></div>'});
+  h+='</div><form class="add-cmt" id="cmt-form"><label for="cmt" class="meta">Comment as '+esc(PEOPLE[state.me])+'</label><textarea id="cmt" rows="3" placeholder="How would this help your work?"></textarea><div class="row"><button class="btn primary" type="submit">Post comment</button></div></form></section>';
+  h+='</div><aside class="sheet profile"><span class="stamp">From AI interview</span><h2>Build Profile</h2><dl>'+
+     '<div><dt>Purpose</dt><dd>'+esc(p.purpose)+'</dd></div>'+
+     '<div><dt>Who uses it</dt><dd>'+esc(p.users)+'</dd></div>'+
+     '<div><dt>Who else should know</dt><dd>'+esc(p.stake)+'</dd></div>'+
+     '<div><dt>Workflow step</dt><dd>'+esc(p.step)+'</dd></div>'+
+     '<div><dt>Data in / out</dt><dd>'+esc(p.data)+'</dd></div>'+
+     '<div><dt>Replaces</dt><dd>'+esc(p.work)+'</dd></div></dl>'+
+     '<p class="note">Sample profile. In the real product the builder answers a short interview and can edit this.</p></aside></div>';
+  return h;
+}
+
+/* ---------- render + events ---------- */
+var app=document.getElementById('app');
+function current(){var id=location.hash.slice(1);var b=id&&byId(id);return b&&b.co===state.co?b:(b?(state.co=b.co,coSel.value=b.co,fillMe(),b):null)}
+function render(){
+  var b=current();
+  app.innerHTML=b?buildPage(b):catalog();
+  if(b){
+    document.getElementById('open-app').onclick=function(){toast('In the real product this opens '+b.name+' in its own tab.')};
+    document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:new Date().toISOString().slice(0,10),b:v});save();render();toast('Comment posted')};
+  }else{
+    document.getElementById('upload').onclick=function(){toast('Upload is spec 02. It lands in this catalog as a Try-out.')};
+  }
+}
+app.addEventListener('click',function(e){
+  var t=e.target.closest('[data-vote],[data-open],[data-share],[data-sort],[data-dept],[data-status]');if(!t)return;
+  if(t.dataset.vote){var b=byId(t.dataset.vote),i=b.votes.indexOf(state.me);if(i>=0){b.votes.splice(i,1);toast('Vote removed')}else{b.votes.push(state.me);toast(b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted for '+b.name)}save();render()}
+  else if(t.dataset.open){location.hash=t.dataset.open}
+  else if(t.dataset.share){openShare(byId(t.dataset.share))}
+  else if(t.dataset.sort){state.sort=t.dataset.sort;save();render()}
+  else if(t.dataset.dept){state.dept=t.dataset.dept;render()}
+  else if(t.dataset.status){state.status=t.dataset.status;render()}
+});
+window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
+document.getElementById('reset').onclick=function(){apply(JSON.parse(SEED));save();render();toast('Sample data reset')};
+
+/* ---------- share ---------- */
+var dlg=document.getElementById('share'),shareB=null,channel='link';
+var CH={link:'Copy link',email:'Send email',teams:'Send in Teams',slack:'Send in Slack'};
+function setCh(c){channel=c;dlg.querySelectorAll('.ch').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.ch===c)});document.getElementById('to-field').hidden=c==='link';document.getElementById('link-row').hidden=c!=='link';document.getElementById('share-go').textContent=CH[c]}
+dlg.querySelectorAll('.ch').forEach(function(x){x.onclick=function(){setCh(x.dataset.ch)}});
+function openShare(b){shareB=b;document.getElementById('share-title').textContent='Share '+b.name;
+  document.getElementById('share-sub').textContent='Ask coworkers to vote. Shared '+b.shares+' times so far.';
+  document.getElementById('share-co').textContent=COMPANIES[b.co].name;
+  document.getElementById('share-link').value='https://app.voosa.ai/'+state.co+'/builds/'+b.id;
+  document.getElementById('share-note').value='';document.getElementById('share-to').value='';setCh('link');
+  if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}
+document.getElementById('share-cancel').onclick=function(){dlg.close()};
+document.getElementById('share-form').onsubmit=function(e){e.preventDefault();
+  var msg;
+  if(channel==='link'){var v=document.getElementById('share-link');
+    try{navigator.clipboard.writeText(v.value).catch(function(){v.select()})}catch(err){v.select()}
+    msg='Link copied';}
+  else{var to=document.getElementById('share-to').value.trim()||'coworkers';msg='Preview only: in the real product this goes to '+to+' by '+{email:'email',teams:'Teams',slack:'Slack'}[channel]+'.'}
+  shareB.shares++;save();dlg.close();render();toast(msg)};
+
+render();
+})();
+</script>
+</body>
+</html>
