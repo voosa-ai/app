@@ -259,6 +259,65 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
 .ch-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
 .empty{text-align:center;padding:48px 16px;color:var(--soft)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Steer: open to everyone; leadership tools in a navy panel */
+.pulse{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding-block:4px 10px}
+@media (max-width:760px){.pulse{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);min-width:0;position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;inset:auto 0 0 0;height:3px;background:var(--c,var(--ink))}
+.stat b{display:block;font-size:30px;line-height:1.1;letter-spacing:-1px;color:var(--c,var(--ink));font-variant-numeric:tabular-nums}
+.stat span{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-top:2px}
+.stat small{display:block;font-size:12px;color:var(--mortar);margin-top:2px}
+.you{display:flex;align-items:center;gap:12px;background:var(--key-soft);border-radius:12px;padding:10px 14px;font-size:13.5px;color:var(--text);margin:6px 0 4px}
+.you i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:#fff;font-style:normal;font-size:11px;font-weight:600}
+.you a{color:var(--key-ink);font-weight:600}
+.st-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:28px 0 12px;flex-wrap:wrap}
+.st-h h2{margin:0;font-size:19px;letter-spacing:-.5px;color:var(--ink)}
+.st-h p{margin:2px 0 0;font-size:13px;color:var(--soft)}
+.calls{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
+.call{display:grid;grid-template-columns:104px minmax(0,1fr);gap:14px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;padding:14px;box-shadow:var(--shadow);min-width:0}
+.call .thumb{border-radius:8px;align-self:start}
+.kind{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;color:var(--c);font-family:var(--f-mono)}
+.call .name{display:block;margin:2px 0 4px;font-size:16px}
+.call q{display:block;font-size:13px;color:var(--text);quotes:"“" "”"}
+.call .by{font-size:12px;color:var(--mortar);margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.notnow{margin-top:12px;font-size:13px;color:var(--soft);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.notnow button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font-size:12.5px;color:var(--soft)}
+.chs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
+.chx{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.chx.won{box-shadow:none;background:linear-gradient(135deg,var(--surface),var(--hover))}
+.chx h3{margin:0;font-size:17px;line-height:1.25;letter-spacing:-.4px}
+.chx h3 a{color:var(--ink);text-decoration:none}
+.chx h3 a:hover{text-decoration:underline}
+.clock{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.clock span{display:block;height:100%;background:var(--key);border-radius:3px}
+.clock-l{display:flex;justify-content:space-between;font-size:12px;color:var(--mortar);margin-top:-4px}
+.lead{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:center;background:var(--hover);border-radius:10px;padding:8px}
+.lead .thumb{border-radius:6px}
+.lead small{display:block;font-size:11px;font-family:var(--f-mono);color:var(--mortar);text-transform:uppercase;letter-spacing:.3px}
+.lead strong{display:block;color:var(--ink);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lead span{font-size:12px;color:var(--soft)}
+.chx .prize{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;font-size:13.5px}
+.chx .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
+.chx .btn{padding:7px 14px;font-size:13px}
+.lp{margin:34px 0 40px;background:var(--bar);border-radius:20px;padding:18px;color:#FFFFFF}
+.lp-h{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.lp-h h2{margin:0;font-size:19px;letter-spacing:-.5px;color:#FFFFFF}
+.lp-h p{margin:2px 0 0;font-size:13px;color:#AFC0E4}
+.lp-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-family:var(--f-mono);color:#D9E3F6;border:1px solid rgba(217,227,246,.3);border-radius:999px;padding:4px 10px}
+.lp .signals{padding-block:0 14px}
+.lp .sig{border:0}
+.sig h3{display:flex;align-items:center;gap:8px}
+.sig h3 i{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}
+.sig-item{align-items:center}
+.sig-item .thumb{width:46px;flex:none;border-radius:5px}
+.sig-item .t{flex:1;min-width:0;display:flex;flex-direction:column}
+.sig-item .go{color:var(--key-ink);font-size:12px;font-weight:600;white-space:nowrap}
+.lp .tbl-wrap{border:0}
+.lp .legend{color:#AFC0E4;padding-block:12px 0}
+.tbl .appc{display:flex;gap:12px;align-items:center}
+.tbl .appc .thumb{width:64px;flex:none;border-radius:6px}
+.dec-btn.set{border-color:var(--c,var(--ink));color:var(--c,var(--ink))}
 </style>
 </head>
 <body>
@@ -567,7 +626,7 @@ function decChip(b){var d=b.decision;if(!d)return'';
   if(d.kind==='notnow')return'<span class="muted-chip">Not now</span>';return''}
 function meta(b){var r=relyCount(b),ch=chFor(b).filter(function(c){return c.winner===b.id});return'<div class="meta">'+(ch.length?'<span class="ch-chip">'+TROPHY+(ch[0].winner===b.id?'Challenge winner':'In a challenge')+'</span>':'')+decChip(b)+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(r?'<span class="rely">'+r+' rel'+(r===1?'ies':'y')+' on it</span>':'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+'</div>'}
 function nav(){var n=document.getElementById('nav'),h=location.hash,s=h==='#steer',c=h==='#challenges'||h.indexOf('#ch-')===0,k=openChs().length;
-  n.innerHTML='<a href="#" aria-current="'+(!s&&!c)+'">Catalog</a><a href="#challenges" aria-current="'+c+'">'+TROPHY+'Challenges'+(k?'<span class="badge">'+k+'</span>':'')+'</a>'+(isOwner()?'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>':'')}
+  n.innerHTML='<a href="#" aria-current="'+(!s&&!c)+'">Catalog</a><a href="#challenges" aria-current="'+c+'">'+TROPHY+'Challenges'+(k?'<span class="badge">'+k+'</span>':'')+'</a>'+'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>'}
 
 /* ---------- pickers ---------- */
 var coSel=document.getElementById('co'),meSel=document.getElementById('me');
@@ -575,7 +634,7 @@ coSel.innerHTML=Object.keys(COMPANIES).map(function(k){return'<option value="'+k
 function fillMe(){var m=COMPANIES[state.co].members;if(m.indexOf(state.me)<0)state.me='phil';meSel.innerHTML=m.map(function(u){return'<option value="'+u+'">'+PEOPLE[u]+(OWNERS.indexOf(u)>=0?' (leadership)':'')+'</option>'}).join('');meSel.value=state.me}
 coSel.value=state.co;fillMe();
 coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash&&location.hash!=='#steer'&&location.hash!=='#challenges')location.hash='';else render()};
-meSel.onchange=function(){state.me=meSel.value;save();if(location.hash==='#steer'&&!isOwner())location.hash='';else render()};
+meSel.onchange=function(){state.me=meSel.value;save();render()};
 
 /* ---------- catalog ---------- */
 function row(b,rank,why){return'<article class="row"><span class="rank">'+rank+'</span>'+thumb(b)+'<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button>'+
@@ -605,27 +664,65 @@ function catalog(){
 }
 
 /* ---------- steer (leadership) ---------- */
+var DECC={critical:'var(--key)',priority:'var(--ink)',watch:'var(--try)',notnow:'var(--mortar)'};
+function decIcon(k){return k==='critical'?SHIELD:k==='priority'?COMPASS:k==='watch'?'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>':''}
 function steer(){
-  var co=COMPANIES[state.co];
+  var co=COMPANIES[state.co],own=isOwner(),me=state.me;
   var list=BUILDS.filter(function(b){return b.co===state.co}).sort(function(a,b){return score(b)-score(a)||b.votes.length-a.votes.length});
+  var voters={},votes=0,rely=0;list.forEach(function(b){votes+=b.votes.length;rely+=relyCount(b);b.votes.forEach(function(u){voters[u]=1})});
+  var nVoters=Object.keys(voters).length,nMem=co.members.length;
+  var chs=CHALLENGES.filter(function(c){return c.co===state.co}).sort(function(a,b){return(a.winner?1:0)-(b.winner?1:0)||a.closes.localeCompare(b.closes)});
+  var open=chs.filter(function(c){return!c.winner}),soon=open.map(daysLeft).filter(function(d){return d>0}).sort(function(a,b){return a-b})[0];
+  var calls=list.filter(function(b){return b.decision&&b.decision.kind!=='notnow'}),order={critical:0,priority:1,watch:2};
+  calls.sort(function(a,b){return order[a.decision.kind]-order[b.decision.kind]||score(b)-score(a)});
+  var nots=list.filter(function(b){return b.decision&&b.decision.kind==='notnow'});
+  var h='<div class="head"><div><h1>Steer '+esc(co.name)+'</h1><p class="sub">Where '+esc(co.name)+' is headed, and why.'+(own?' The navy panel at the bottom is just for leadership.':'')+'</p></div>'+(own?'<button class="btn primary" id="new-ch">+ New challenge</button>':'')+'</div>';
+  function stat(n,l,sm,c){return'<div class="stat" style="--c:'+c+'"><b>'+n+'</b><span>'+l+'</span><small>'+sm+'</small></div>'}
+  h+='<div class="pulse">'+stat(votes,'votes cast',nVoters+' of '+nMem+' people have voted','var(--ink)')+stat(rely,'“I rely on it” votes','apps people can’t do without','var(--key)')+
+     stat(open.length,'open challenge'+(open.length===1?'':'s'),soon?'next closes in '+soon+' day'+(soon===1?'':'s'):'post one to get people building','var(--try)')+
+     stat(calls.length,'leadership call'+(calls.length===1?'':'s'),'each with a public reason','var(--live)')+'</div>';
+  var mine=list.filter(function(b){return b.votes.indexOf(me)>=0}),mineCalled=mine.filter(function(b){return b.decision&&b.decision.kind!=='notnow'});
+  h+='<div class="you"><i style="background:'+COLORS[me]+'">'+initials(me)+'</i><span>'+(mine.length?'You’ve voted for '+mine.length+' app'+(mine.length===1?'':'s')+' here. '+(mineCalled.length?mineCalled.length+' of them '+(mineCalled.length===1?'has':'have')+' a leadership call: <strong>'+esc(mineCalled.map(function(b){return b.name}).join(', '))+'</strong>.':'None has a leadership call yet. Share the ones you rely on.'):'You haven’t voted here yet. Your votes are how leadership sees what matters. <a href="#">Go vote →</a>')+'</span></div>';
+  // leadership calls
+  h+='<div class="st-h"><div><h2>Leadership’s calls</h2><p>Where leadership is pointing the team, and why. The catalog still ranks by your votes.</p></div></div>';
+  if(calls.length){h+='<div class="calls">';calls.forEach(function(b){var d=b.decision;
+    h+='<article class="call" style="--c:'+DECC[d.kind]+'">'+thumb(b)+'<div style="min-width:0"><span class="kind">'+decIcon(d.kind)+esc(DEC[d.kind].label)+'</span><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button>'+
+      (d.why?'<q>'+esc(d.why)+'</q>':'')+'<div class="by"><span>— '+esc(PEOPLE[d.by])+', '+fmtS(d.t)+'</span>'+(own?'<button class="linkbtn" data-decide="'+b.id+'">Change</button>':'')+'</div><div class="by">'+b.votes.length+' vote'+(b.votes.length===1?'':'s')+', '+relyCount(b)+' rel'+(relyCount(b)===1?'ies':'y')+' on it</div></div></article>'});
+    h+='</div>'}else h+='<div class="empty" style="padding:24px">No calls yet.'+(own?' Pick an app in the panel below.':' Leadership hasn’t pointed anywhere yet.')+'</div>';
+  if(nots.length)h+='<div class="notnow"><span>Not now:</span>'+nots.map(function(b){return'<button data-open="'+b.id+'" title="'+esc(b.decision.why||'')+'">'+esc(b.name)+'</button>'}).join('')+'</div>';
+  // challenges
+  h+='<div class="st-h"><div><h2>'+TROPHY+' Challenges</h2><p>Leadership names a problem and a prize. Build it, enter it, rally votes.</p></div><a class="linkbtn" href="#challenges">All challenges →</a></div>';
+  if(!chs.length)h+='<div class="empty" style="padding:24px">No challenges yet.'+(own?' Post the first one.':'')+'</div>';
+  else{h+='<div class="chs">';chs.forEach(function(c){var top=entriesRanked(c)[0],w=c.winner?byId(c.winner):null,dl=daysLeft(c);
+    var tot=Math.max(1,(d(c.closes)-d(c.opens))),pct=Math.min(100,Math.max(0,(Date.now()-d(c.opens))/tot*100));
+    h+='<article class="chx'+(w?' won':'')+'"><div class="ch-top"><span class="dept">'+esc(c.dept)+'</span>'+chState(c)+'</div><h3><a href="#ch-'+c.id+'">'+esc(c.title)+'</a></h3>'+
+      '<span class="prize">'+TROPHY+esc(c.prize)+'</span>';
+    if(!w)h+='<div class="clock"><span style="width:'+pct.toFixed(0)+'%"></span></div><div class="clock-l"><span>Opened '+fmtS(c.opens)+'</span><span>'+(dl>0?dl+' day'+(dl===1?'':'s')+' left':'Closed '+fmtS(c.closes))+'</span></div>';
+    var lb=w||top;
+    if(lb)h+='<div class="lead">'+thumb(lb)+'<div style="min-width:0"><small>'+(w?'Winner':'Leading · '+c.entries.length+' entr'+(c.entries.length===1?'y':'ies'))+'</small><strong>'+esc(lb.name)+'</strong><span>'+(w?'“'+esc(c.winWhy)+'”':lb.votes.length+' votes, '+relyCount(lb)+' rely on it')+'</span></div></div>';
+    else h+='<div class="lead" style="grid-template-columns:1fr"><span>No entries yet. Be the first.</span></div>';
+    if(!w)h+='<div class="actions"><a class="btn key" href="#ch-'+c.id+'">Enter a build</a>'+(own&&c.entries.length&&dl<=0?'<a class="btn" href="#ch-'+c.id+'">Pick the winner</a>':'<a class="btn" href="#ch-'+c.id+'">See entries</a>')+'</div>';
+    h+='</article>'});h+='</div>'}
+  if(!own)return h+'<p class="legend">Leadership also sees which apps are waiting on a decision and which have a small but devoted following.</p>';
+  // leadership panel
   var waiting=list.filter(function(b){return b.votes.length>=THRESHOLD&&!b.decision});
   var gems=list.filter(function(b){return!b.decision&&b.votes.length>0&&b.votes.length<THRESHOLD&&avg(b)>=2.5});
   var shallow=list.filter(function(b){return b.votes.length>=3&&avg(b)<1.7&&!b.decision});
-  function sig(title,desc,items,note){return'<div class="sig"><h3>'+title+'</h3><p>'+desc+'</p>'+(items.length?items.map(function(b){return'<button class="sig-item" data-decide="'+b.id+'"><strong>'+esc(b.name)+'</strong><span>'+note(b)+'</span></button>'}).join(''):'<span class="none">Nothing right now</span>')+'</div>'}
-  var h='<div class="head"><div><h1>Steer '+esc(co.name)+'</h1><p class="sub">What people vote for, how much it matters to them, and where leadership points the team. Only leadership sees this page.</p></div></div>';
+  function sig(title,desc,items,note,c){return'<div class="sig" style="--c:'+c+'"><h3><i></i>'+title+(items.length?' · '+items.length:'')+'</h3><p>'+desc+'</p>'+(items.length?items.map(function(b){return'<button class="sig-item" data-decide="'+b.id+'"><span class="thumb" aria-hidden="true">'+thumbSVG(b)+'</span><span class="t"><strong>'+esc(b.name)+'</strong><span>'+note(b)+'</span></span><span class="go">Set direction</span></button>'}).join(''):'<span class="none">Nothing right now</span>')+'</div>'}
+  h+='<section class="lp"><div class="lp-h"><div><h2>Leadership tools</h2><p>Signals from the votes, and a direction for every app.</p></div><span class="lp-tag"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>Only leadership sees this</span></div>';
   h+='<div class="signals">'+
-    sig('Waiting on a decision','Popular apps nobody has set a direction for yet.',waiting,function(b){return b.votes.length+' votes, '+relyCount(b)+' rely on it'})+
-    sig('Hidden gems','Few votes, but the people who use it depend on it.',gems,function(b){return relyCount(b)+' of '+b.votes.length+' rely on it'})+
-    sig('Popular but shallow','Lots of votes, mostly “nice to have”.',shallow,function(b){return b.votes.length+' votes, avg '+avg(b).toFixed(1)+' of 3'})+'</div>';
+    sig('Waiting on a decision','Popular apps nobody has set a direction for yet.',waiting,function(b){return b.votes.length+' votes, '+relyCount(b)+' rely on it'},'var(--key)')+
+    sig('Hidden gems','Few votes, but the people who use it depend on it.',gems,function(b){return relyCount(b)+' of '+b.votes.length+' rely on it'},'var(--live)')+
+    sig('Popular but shallow','Lots of votes, mostly “nice to have”.',shallow,function(b){return b.votes.length+' votes, avg '+avg(b).toFixed(1)+' of 3'},'var(--try)')+'</div>';
   h+='<div class="tbl-wrap"><table class="tbl"><thead><tr><th>App</th><th class="num">People</th><th>How much it helps</th><th class="num">Score</th><th>Direction</th></tr></thead><tbody>';
   list.forEach(function(b){var c={1:0,2:0,3:0};b.votes.forEach(function(u){c[lvl(b,u)]++});var n=b.votes.length||1;
-    h+='<tr><td><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><div class="sub-cell">'+esc(b.dept)+' · '+(b.status==='live'?'Live':'Try-out')+'</div></td>'+
+    h+='<tr><td><div class="appc">'+thumb(b)+'<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><div class="sub-cell">'+esc(b.dept)+' · '+(b.status==='live'?'Live':'Try-out')+'</div></div></div></td>'+
       '<td class="num">'+b.votes.length+'</td>'+
       '<td><div class="mix" role="img" aria-label="'+c[3]+' rely on it, '+c[2]+' saves time, '+c[1]+' nice to have">'+(b.votes.length?'<span class="m3" style="width:'+(c[3]/n*100)+'%"></span><span class="m2" style="width:'+(c[2]/n*100)+'%"></span><span class="m1" style="width:'+(c[1]/n*100)+'%"></span>':'')+'</div>'+
       '<div class="sub-cell">'+c[3]+' rely · '+c[2]+' save time · '+c[1]+' nice</div></td>'+
       '<td class="num"><strong>'+score(b)+'</strong></td>'+
-      '<td>'+(b.decision?'<button class="dec-btn set" data-decide="'+b.id+'">'+esc(DEC[b.decision.kind].label)+'</button><div class="sub-cell">'+esc(PEOPLE[b.decision.by].split(' ')[0])+', '+fmtS(b.decision.t)+'</div>':'<button class="dec-btn" data-decide="'+b.id+'">Set direction</button>')+'</td></tr>'});
-  h+='</tbody></table></div><p class="legend"><span class="sw m3"></span>I rely on it (3 pts) <span class="sw m2"></span>Saves me time (2) <span class="sw m1"></span>Nice to have (1). The catalog ranks by score.</p>';
+      '<td>'+(b.decision?'<button class="dec-btn set" style="--c:'+DECC[b.decision.kind]+'" data-decide="'+b.id+'">'+decIcon(b.decision.kind)+' '+esc(DEC[b.decision.kind].label)+'</button><div class="sub-cell">'+esc(PEOPLE[b.decision.by].split(' ')[0])+', '+fmtS(b.decision.t)+'</div>':'<button class="dec-btn" data-decide="'+b.id+'">Set direction</button>')+'</td></tr>'});
+  h+='</tbody></table></div><p class="legend"><span class="sw m3"></span>I rely on it (3 pts) <span class="sw m2"></span>Saves me time (2) <span class="sw m1"></span>Nice to have (1). The catalog ranks by score.</p></section>';
   return h;
 }
 
@@ -696,11 +793,11 @@ function challengePage(c){
 var app=document.getElementById('app');
 function current(){var b=byId(location.hash.slice(1));if(b&&b.co!==state.co){state.co=b.co;coSel.value=b.co;fillMe()}return b}
 function render(){
-  var b=current(),hs=location.hash,st=hs==='#steer'&&isOwner(),chl=hs==='#challenges',ch=hs.indexOf('#ch-')===0?chById(hs.slice(4)):null;
+  var b=current(),hs=location.hash,st=hs==='#steer',chl=hs==='#challenges',ch=hs.indexOf('#ch-')===0?chById(hs.slice(4)):null;
   if(ch&&ch.co!==state.co){state.co=ch.co;coSel.value=ch.co;fillMe()}
   nav();
   if(chl||ch){app.innerHTML=ch?challengePage(ch):challengesPage();wireCh(ch);return}
-  app.innerHTML=b?buildPage(b):st?steer():catalog();
+  app.innerHTML=b?buildPage(b):st?steer():catalog();if(st)wireCh(null);
   if(b){document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:today(),b:v});save();render();toast('Comment posted')}}
   else if(!st){document.getElementById('upload').onclick=function(){toast('Upload is spec 02. New builds land here under New.')};
     var ss=document.getElementById('status');ss.value=state.status;ss.onchange=function(){state.status=ss.value;render()}}
