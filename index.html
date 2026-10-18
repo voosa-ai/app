@@ -223,6 +223,40 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
 .dec-btn{border:1px dashed var(--mortar);background:transparent;border-radius:999px;padding:5px 12px;font-size:13px;color:var(--soft)}
 .dec-btn.set{border-style:solid;border-color:var(--ink);color:var(--ink);font-weight:600}
 .dec-btn:hover{border-color:var(--key);color:var(--key-ink)}
+.nav .badge{background:var(--key);color:#FFFFFF;font-size:11px;font-weight:700;border-radius:999px;padding:0 6px;margin-left:2px}
+.ch-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding:12px 16px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px}
+.ch-strip .prize{font-size:12.5px;opacity:.75}
+.ch-strip .go{margin-left:auto;font-weight:600;color:#FF8A84}
+.ch-strip:hover{filter:brightness(1.1)}
+.ch-chip{display:inline-flex;align-items:center;gap:4px;color:var(--try);font-weight:600}
+.ch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;padding-block:6px 40px}
+.ch-card{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);min-width:0}
+.ch-card:hover{border-color:var(--ink)}
+.ch-card.done{box-shadow:none}
+.ch-card h3{margin:0;font-size:18px;color:var(--ink);letter-spacing:-.4px;line-height:1.25}
+.ch-card p{margin:0;font-size:13.5px;color:var(--soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ch-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ch-top .dept{font-size:12.5px;color:var(--mortar)}
+.ch-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px}
+.ch-pill.open{background:var(--key-soft);color:var(--key-ink)}
+.ch-pill.judging{background:var(--hover);color:var(--ink)}
+.ch-pill.won{background:var(--hover);color:var(--try)}
+.ch-foot{display:flex;flex-direction:column;gap:2px;margin-top:auto;padding-top:8px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mortar)}
+.ch-foot .prize{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;font-size:13.5px}
+.ch-hero{padding-block:16px 8px}
+.ch-hero h1{font-size:clamp(26px,4vw,36px);margin-top:8px}
+.ch-brief{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+@media (max-width:700px){.ch-brief{grid-template-columns:minmax(0,1fr)}}
+.ch-brief h4{margin:0;font-size:12px;font-weight:500;color:var(--mortar)}
+.ch-brief p{margin:3px 0 0;font-size:14.5px}
+.ch-how{font-size:13px;color:var(--soft);margin:12px 0 0;max-width:70ch}
+.ch-hero .actions{display:flex;gap:10px;flex-wrap:wrap}
+.win-banner{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:14px 16px;border-radius:12px;background:var(--key-soft);font-size:14px}
+.win-banner svg{flex:none;width:20px;height:20px;color:var(--key-ink)}
+.ch-note{display:flex;align-items:center;gap:10px;margin-top:14px;padding:11px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-size:13.5px;color:var(--text)}
+.ch-note svg{color:var(--try);flex:none}
+.ch-note .go{margin-left:auto;color:var(--soft)}
+.ch-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
 .empty{text-align:center;padding:48px 16px;color:var(--soft)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -302,6 +336,37 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
     </div>
     <div class="field"><label for="dec-why">Why (the team sees this)</label><input type="text" id="dec-why" placeholder="e.g. Required for our OSHA program"></div>
     <div class="row-end"><button type="button" class="linkbtn" id="dec-clear" style="margin-right:auto">Clear direction</button><button type="button" class="btn" id="dec-cancel">Cancel</button><button type="submit" class="btn primary">Save</button></div>
+  </form>
+</dialog>
+
+<dialog id="enter" aria-labelledby="enter-title">
+  <div class="dlg">
+    <h3 id="enter-title">Enter a build</h3>
+    <p class="lede">Pick one of your builds. Coworkers vote on entries, and leadership picks the winner.</p>
+    <div class="levels" id="enter-list"></div>
+    <div class="row-end"><button type="button" class="btn" id="enter-cancel">Cancel</button></div>
+  </div>
+</dialog>
+
+<dialog id="win" aria-labelledby="win-title">
+  <form class="dlg" id="win-form">
+    <h3 id="win-title">Pick the winner</h3>
+    <p class="lede">Weigh votes and how much people rely on it, fit with company direction, and how well it meets the brief.</p>
+    <div class="levels" id="win-list"></div>
+    <div class="field"><label for="win-why">Why it won (everyone sees this)</label><input type="text" id="win-why" placeholder="e.g. Cut report time from 4 hours to 90 minutes"></div>
+    <div class="row-end"><button type="button" class="btn" id="win-cancel">Cancel</button><button type="submit" class="btn key">Announce winner</button></div>
+  </form>
+</dialog>
+
+<dialog id="newch" aria-labelledby="nc-h">
+  <form class="dlg" id="new-form">
+    <h3 id="nc-h">New challenge</h3>
+    <div class="field"><label for="nc-title">Challenge</label><input type="text" id="nc-title" placeholder="e.g. Cut site-visit report time in half"></div>
+    <div class="field"><label for="nc-dept">Department</label><select id="nc-dept" class="status-sel" style="width:100%;margin:0"></select></div>
+    <div class="field"><label for="nc-ask">What we need</label><textarea id="nc-ask" rows="3" placeholder="The problem, who has it, and what a good answer looks like"></textarea></div>
+    <div class="ch-two"><div class="field"><label for="nc-prize">Prize</label><input type="text" id="nc-prize" placeholder="e.g. $250 gift card"></div>
+    <div class="field"><label for="nc-close">Deadline</label><input type="date" id="nc-close" class="status-sel" style="width:100%;margin:0;box-sizing:border-box"></div></div>
+    <div class="row-end"><button type="button" class="btn" id="nc-cancel">Cancel</button><button type="submit" class="btn primary">Post challenge</button></div>
   </form>
 </dialog>
 
@@ -427,14 +492,20 @@ var SEED_DEC={
 };
 BUILDS.forEach(function(b){b.impact=SEED_IMPACT[b.id]||{};b.decision=SEED_DEC[b.id]||null});
 function snap(b){return{id:b.id,votes:b.votes,impact:b.impact,shares:b.shares,comments:b.comments,decision:b.decision}}
+var CHALLENGES=[
+  {id:'site-reports',co:'omitz',dept:'Field Safety',title:'Cut site-visit report time in half',ask:'Field staff spend 3-4 hours writing up each site visit. Build something that turns field notes, photos and checklist results into a draft report.',prize:'$250 gift card and a Friday off',by:'phil',opens:'2026-10-06',closes:'2026-11-14',entries:['bess-kit','hydrogen-safety','glove-guide'],winner:null,winWhy:''},
+  {id:'training-sticks',co:'omitz',dept:'Training',title:'Make annual training stick',ask:'Annual compliance training is a slide deck nobody remembers. Build a way to train people that they would actually finish and recall.',prize:'Team lunch on the company',by:'doug',opens:'2026-08-01',closes:'2026-09-15',entries:['ethics-compass'],winner:'ethics-compass',winWhy:'Six people voted for it and completions went up. It is now how we run ethics training.'},
+  {id:'homework-fun',co:'personal',dept:'Family',title:'Make homework something the kids ask for',ask:'Turn one subject into a game the kids will choose over screens.',prize:'Pick the next family trip',by:'phil',opens:'2026-08-01',closes:'2026-11-30',entries:['bow-hunter-math','spell-it-out'],winner:null,winWhy:''}
+];
 var SEED=JSON.stringify(BUILDS.map(snap));
+var SEED_CH=JSON.stringify(CHALLENGES);
 
 /* ---------- state ---------- */
-var KEY='voosa-catalog-v4';
+var KEY='voosa-catalog-v5';
 function byId(id){for(var i=0;i<BUILDS.length;i++)if(BUILDS[i].id===id)return BUILDS[i]}
 function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.impact=x.impact||{};b.shares=x.shares;b.comments=x.comments;b.decision=x.decision||null}})}
-function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds)apply(s.builds);return s||{}}catch(e){return{}}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(snap)}))}catch(e){}}
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds)apply(s.builds);if(s&&s.challenges)CHALLENGES=s.challenges;return s||{}}catch(e){return{}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(snap),challenges:CHALLENGES}))}catch(e){}}
 var saved=load();
 var state={co:saved.co||'omitz',me:saved.me||'phil',sort:saved.sort||'top',dept:'all',status:'all'};
 
@@ -494,16 +565,16 @@ function decChip(b){var d=b.decision;if(!d)return'';
   if(d.kind==='critical')return'<span class="crit">'+SHIELD+'Critical</span>';
   if(d.kind==='priority')return'<span class="crit">'+COMPASS+'Priority</span>';
   if(d.kind==='notnow')return'<span class="muted-chip">Not now</span>';return''}
-function meta(b){var r=relyCount(b);return'<div class="meta">'+decChip(b)+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(r?'<span class="rely">'+r+' rel'+(r===1?'ies':'y')+' on it</span>':'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+'</div>'}
-function nav(){var n=document.getElementById('nav');var s=location.hash==='#steer';
-  n.innerHTML='<a href="#" aria-current="'+(!s)+'">Catalog</a>'+(isOwner()?'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>':'')}
+function meta(b){var r=relyCount(b),ch=chFor(b).filter(function(c){return c.winner===b.id});return'<div class="meta">'+(ch.length?'<span class="ch-chip">'+TROPHY+(ch[0].winner===b.id?'Challenge winner':'In a challenge')+'</span>':'')+decChip(b)+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(r?'<span class="rely">'+r+' rel'+(r===1?'ies':'y')+' on it</span>':'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+'</div>'}
+function nav(){var n=document.getElementById('nav'),h=location.hash,s=h==='#steer',c=h==='#challenges'||h.indexOf('#ch-')===0,k=openChs().length;
+  n.innerHTML='<a href="#" aria-current="'+(!s&&!c)+'">Catalog</a><a href="#challenges" aria-current="'+c+'">'+TROPHY+'Challenges'+(k?'<span class="badge">'+k+'</span>':'')+'</a>'+(isOwner()?'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>':'')}
 
 /* ---------- pickers ---------- */
 var coSel=document.getElementById('co'),meSel=document.getElementById('me');
 coSel.innerHTML=Object.keys(COMPANIES).map(function(k){return'<option value="'+k+'">'+COMPANIES[k].name+'</option>'}).join('');
 function fillMe(){var m=COMPANIES[state.co].members;if(m.indexOf(state.me)<0)state.me='phil';meSel.innerHTML=m.map(function(u){return'<option value="'+u+'">'+PEOPLE[u]+(OWNERS.indexOf(u)>=0?' (leadership)':'')+'</option>'}).join('');meSel.value=state.me}
 coSel.value=state.co;fillMe();
-coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash&&location.hash!=='#steer')location.hash='';else render()};
+coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash&&location.hash!=='#steer'&&location.hash!=='#challenges')location.hash='';else render()};
 meSel.onchange=function(){state.me=meSel.value;save();if(location.hash==='#steer'&&!isOwner())location.hash='';else render()};
 
 /* ---------- catalog ---------- */
@@ -517,6 +588,7 @@ function catalog(){
   h+='<div class="controls"><div class="tabs" role="group" aria-label="Sort"><button data-sort="top" aria-pressed="'+(state.sort==='top')+'">Top</button><button data-sort="new" aria-pressed="'+(state.sort==='new')+'">New</button></div>'+
      '<div class="depts" role="group" aria-label="Department">'+['all'].concat(co.depts).map(function(dp){return'<button data-dept="'+esc(dp)+'" aria-pressed="'+(state.dept===dp)+'">'+(dp==='all'?'All':esc(dp))+'</button>'}).join('')+'</div>'+
      '<select class="status-sel" id="status" aria-label="Status"><option value="all">Any status</option><option value="tryout">Try-out</option><option value="live">Live</option></select></div>';
+  h+=chStrip();
   if(!list.length)return h+'<div class="empty">No builds match these filters yet.</div>';
   var crit=[];
   if(crit.length){h+='<section class="crit-lane" aria-label="Critical apps"><div class="lane-h"><span class="shield">'+SHIELD+'</span>Critical <small>Set by leadership, regardless of votes</small></div>';
@@ -566,6 +638,7 @@ function buildPage(b){
      (mine?'<p class="you-said">You said: <strong>'+IMPACT[lvl(b,state.me)]+'</strong> <button class="linkbtn" data-rate="'+b.id+'">Change</button></p>':'')+
      '<div class="byline"><span class="av" style="width:24px;height:24px;font-size:10px;background:'+COLORS.phil+'">PC</span>'+esc(PEOPLE.phil)+' · built with '+esc(b.tool)+' · '+fmt(b.up)+' · '+statusDot(b)+'</div></div></section>';
   h+='<div class="bp"><div style="min-width:0">';
+  chFor(b).forEach(function(c){h+='<a class="ch-note" href="#ch-'+c.id+'">'+TROPHY+'<span>'+(c.winner===b.id?'Won the challenge':'Entered in the challenge')+' <strong>'+esc(c.title)+'</strong></span><span class="go">→</span></a>'});
   var d=b.decision;
   if(d)h+='<div class="crit-note"><span class="shield">'+(d.kind==='critical'?SHIELD:COMPASS)+'</span><div><strong>Leadership: '+esc(DEC[d.kind].label)+'.</strong> '+esc(DEC[d.kind].desc)+'. “'+esc(d.why)+'” — '+esc(PEOPLE[d.by])+', '+fmtS(d.t)+(isOwner()?' <button class="linkbtn" data-decide="'+b.id+'">Change</button>':'')+'</div></div>';
   else if(isOwner())h+='<div style="margin-top:12px"><button class="btn" data-decide="'+b.id+'">'+COMPASS+' Set direction</button></div>';
@@ -584,12 +657,49 @@ function buildPage(b){
   return h;
 }
 
+/* ---------- challenges ---------- */
+var TROPHY='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4a3 3 0 0 0 4 4M16 6h4a3 3 0 0 1-4 4M12 13v4M8 21h8M9 17h6"/></svg>';
+function chById(id){for(var i=0;i<CHALLENGES.length;i++)if(CHALLENGES[i].id===id)return CHALLENGES[i]}
+function chFor(b){return CHALLENGES.filter(function(c){return c.entries.indexOf(b.id)>=0})}
+function openChs(){return CHALLENGES.filter(function(c){return c.co===state.co&&!c.winner})}
+function daysLeft(c){return Math.ceil((new Date(c.closes+'T23:59:00Z')-new Date())/864e5)}
+function chState(c){if(c.winner)return'<span class="ch-pill won">'+TROPHY+'Winner picked</span>';var d=daysLeft(c);
+  return d>0?'<span class="ch-pill open">Open · '+d+' day'+(d===1?'':'s')+' left</span>':'<span class="ch-pill judging">Judging</span>'}
+function chStrip(){var o=openChs().filter(function(c){return state.dept==='all'||c.dept===state.dept});if(!o.length)return'';var c=o[0];
+  return'<a class="ch-strip" href="#ch-'+c.id+'">'+TROPHY+'<span><strong>Challenge in '+esc(c.dept)+':</strong> '+esc(c.title)+'</span><span class="prize">'+esc(c.prize)+'</span><span class="go">See entries →</span></a>'}
+function challengesPage(){
+  var co=COMPANIES[state.co],list=CHALLENGES.filter(function(c){return c.co===state.co}).sort(function(a,b){return(a.winner?1:0)-(b.winner?1:0)||a.closes.localeCompare(b.closes)});
+  var h='<div class="head"><div><h1>Challenges</h1><p class="sub">Leadership names a problem and a prize. Build something, enter it, and get your coworkers’ votes.</p></div>'+(isOwner()?'<button class="btn primary" id="new-ch">+ New challenge</button>':'')+'</div>';
+  if(!list.length)return h+'<div class="empty">No challenges at '+esc(co.name)+' yet.'+(isOwner()?' Post the first one.':'')+'</div>';
+  h+='<div class="ch-grid">';
+  list.forEach(function(c){var top=entriesRanked(c)[0];
+    h+='<a class="ch-card'+(c.winner?' done':'')+'" href="#ch-'+c.id+'"><div class="ch-top"><span class="dept">'+esc(c.dept)+'</span>'+chState(c)+'</div><h3>'+esc(c.title)+'</h3><p>'+esc(c.ask)+'</p>'+
+      '<div class="ch-foot"><span class="prize">'+TROPHY+esc(c.prize)+'</span><span>'+c.entries.length+' entr'+(c.entries.length===1?'y':'ies')+(c.winner?' · won by '+esc(byId(c.winner).name):top?' · leading: '+esc(top.name):'')+'</span></div></a>'});
+  return h+'</div>';
+}
+function entriesRanked(c){return c.entries.map(byId).sort(function(a,b){return score(b)-score(a)||b.votes.length-a.votes.length})}
+function challengePage(c){
+  var h='<a class="back" href="#challenges">← All challenges</a>';
+  h+='<section class="ch-hero"><div class="ch-top"><span class="dept">'+esc(c.dept)+'</span>'+chState(c)+'</div><h1>'+esc(c.title)+'</h1>'+
+     '<div class="ch-brief"><div><h4>What we need</h4><p>'+esc(c.ask)+'</p></div><div><h4>Prize</h4><p>'+esc(c.prize)+'</p></div><div><h4>Deadline</h4><p>'+fmtS(c.closes)+'</p></div></div>'+
+     '<p class="ch-how">Posted by '+esc(PEOPLE[c.by])+'. Leadership picks the winner based on votes and how much people rely on it, fit with company direction, and how well it meets the brief.</p>'+
+     (c.winner?'':'<div class="actions" style="margin-top:14px"><button class="btn key" id="enter-ch">Enter a build</button>'+(isOwner()&&c.entries.length?'<button class="btn" id="pick-win">'+TROPHY+' Pick the winner</button>':'')+'</div>')+'</section>';
+  if(c.winner){var w=byId(c.winner);h+='<div class="win-banner">'+TROPHY+'<div><strong>'+esc(w.name)+' won.</strong> “'+esc(c.winWhy)+'” — '+esc(PEOPLE[c.by])+(isOwner()?' <button class="linkbtn" id="reopen-ch">Reopen</button>':'')+'</div></div>'}
+  h+='<h2 class="section-h">Entries'+(c.entries.length?' · '+c.entries.length:'')+'</h2>';
+  if(!c.entries.length)h+='<div class="empty" style="padding:28px">No entries yet. Be the first.</div>';
+  h+='<div class="list" style="padding-top:0">';
+  entriesRanked(c).forEach(function(b,i){h+=row(b,c.winner===b.id?TROPHY:(i+1))});
+  return h+'</div>';
+}
+
 /* ---------- render + events ---------- */
 var app=document.getElementById('app');
 function current(){var b=byId(location.hash.slice(1));if(b&&b.co!==state.co){state.co=b.co;coSel.value=b.co;fillMe()}return b}
 function render(){
-  var b=current(),st=location.hash==='#steer'&&isOwner();
+  var b=current(),hs=location.hash,st=hs==='#steer'&&isOwner(),chl=hs==='#challenges',ch=hs.indexOf('#ch-')===0?chById(hs.slice(4)):null;
+  if(ch&&ch.co!==state.co){state.co=ch.co;coSel.value=ch.co;fillMe()}
   nav();
+  if(chl||ch){app.innerHTML=ch?challengePage(ch):challengesPage();wireCh(ch);return}
   app.innerHTML=b?buildPage(b):st?steer():catalog();
   if(b){document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:today(),b:v});save();render();toast('Comment posted')}}
   else if(!st){document.getElementById('upload').onclick=function(){toast('Upload is spec 02. New builds land here under New.')};
@@ -607,7 +717,7 @@ app.addEventListener('click',function(e){
   else if(t.dataset.dept){state.dept=t.dataset.dept;render()}
 });
 window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
-document.getElementById('reset').onclick=function(){apply(JSON.parse(SEED));save();render();toast('Sample data reset')};
+document.getElementById('reset').onclick=function(){apply(JSON.parse(SEED));CHALLENGES=JSON.parse(SEED_CH);save();render();toast('Sample data reset')};
 
 /* ---------- vote with impact ---------- */
 var rateDlg=document.getElementById('rate'),rateB=null;
@@ -633,6 +743,37 @@ document.getElementById('dec-clear').onclick=function(){decB.decision=null;save(
 document.getElementById('dec-form').onsubmit=function(e){e.preventDefault();var w=document.getElementById('dec-why').value.trim();
   if(!decKind){toast('Pick a direction');return}if(!w){toast('Add a reason so the team knows why');return}
   decB.decision={kind:decKind,by:state.me,t:today(),why:w};save();decDlg.close();render();toast(decB.name+': '+DEC[decKind].label)};
+
+/* ---------- challenge dialogs ---------- */
+var entDlg=document.getElementById('enter'),winDlg=document.getElementById('win'),newDlg=document.getElementById('newch'),curCh=null,winPick=null;
+function wireCh(c){curCh=c;
+  var nb=document.getElementById('new-ch');if(nb)nb.onclick=function(){document.getElementById('nc-dept').innerHTML=COMPANIES[state.co].depts.map(function(d){return'<option>'+esc(d)+'</option>'}).join('');
+    ['nc-title','nc-ask','nc-prize'].forEach(function(i){document.getElementById(i).value=''});
+    var dt=new Date(Date.now()+30*864e5);document.getElementById('nc-close').value=dt.toISOString().slice(0,10);newDlg.showModal()};
+  if(!c)return;
+  var eb=document.getElementById('enter-ch');if(eb)eb.onclick=function(){
+    var opts=BUILDS.filter(function(b){return b.co===c.co&&c.entries.indexOf(b.id)<0});
+    document.getElementById('enter-list').innerHTML=(opts.length?opts.map(function(b){return'<button type="button" class="level" data-pick="'+b.id+'"><strong>'+esc(b.name)+'</strong><span>'+esc(b.dept)+' · '+esc(b.tag)+'</span></button>'}).join(''):'<p class="lede">Every build here is already entered.</p>')+
+      '<button type="button" class="level" data-pick="__new"><strong>+ Upload a new build</strong><span>Built something just for this? Upload it and it enters automatically.</span></button>';
+    entDlg.showModal()};
+  var pw=document.getElementById('pick-win');if(pw)pw.onclick=function(){winPick=null;
+    document.getElementById('win-list').innerHTML=entriesRanked(c).map(function(b){return'<button type="button" class="level" data-win="'+b.id+'" aria-pressed="false"><strong>'+esc(b.name)+'</strong><span>'+b.votes.length+' votes, '+relyCount(b)+' rely on it, score '+score(b)+(b.decision?' · leadership: '+DEC[b.decision.kind].label:'')+'</span></button>'}).join('');
+    document.getElementById('win-why').value='';winDlg.showModal()};
+  var ro=document.getElementById('reopen-ch');if(ro)ro.onclick=function(){c.winner=null;c.winWhy='';save();render();toast('Challenge reopened')};
+}
+document.getElementById('enter-list').addEventListener('click',function(e){var t=e.target.closest('[data-pick]');if(!t)return;
+  if(t.dataset.pick==='__new'){entDlg.close();toast('Upload is spec 02. A build uploaded from here enters the challenge automatically.');return}
+  curCh.entries.push(t.dataset.pick);save();entDlg.close();render();toast(byId(t.dataset.pick).name+' entered. Share it to get votes.')});
+document.getElementById('win-list').addEventListener('click',function(e){var t=e.target.closest('[data-win]');if(!t)return;winPick=t.dataset.win;
+  winDlg.querySelectorAll('[data-win]').forEach(function(x){x.setAttribute('aria-pressed',x===t)})});
+document.getElementById('win-form').onsubmit=function(e){e.preventDefault();var w=document.getElementById('win-why').value.trim();
+  if(!winPick){toast('Pick an entry');return}if(!w){toast('Say why it won, so everyone learns what wins');return}
+  curCh.winner=winPick;curCh.winWhy=w;save();winDlg.close();render();toast(byId(winPick).name+' wins!')};
+document.getElementById('new-form').onsubmit=function(e){e.preventDefault();var g=function(i){return document.getElementById(i).value.trim()};
+  if(!g('nc-title')||!g('nc-ask')||!g('nc-prize')){toast('Fill in the title, what you need, and the prize');return}
+  var c={id:'c'+Date.now().toString(36),co:state.co,dept:g('nc-dept'),title:g('nc-title'),ask:g('nc-ask'),prize:g('nc-prize'),by:state.me,opens:today(),closes:g('nc-close')||today(),entries:[],winner:null,winWhy:''};
+  CHALLENGES.push(c);save();newDlg.close();location.hash='ch-'+c.id;toast('Challenge posted to '+c.dept)};
+[['enter-cancel',entDlg],['win-cancel',winDlg],['nc-cancel',newDlg]].forEach(function(x){document.getElementById(x[0]).onclick=function(){x[1].close()}});
 
 /* ---------- share ---------- */
 var dlg=document.getElementById('share'),shareB=null,channel='link';
