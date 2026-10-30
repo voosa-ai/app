@@ -224,39 +224,32 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
 .dec-btn.set{border-style:solid;border-color:var(--ink);color:var(--ink);font-weight:600}
 .dec-btn:hover{border-color:var(--key);color:var(--key-ink)}
 .nav .badge{background:var(--key);color:#FFFFFF;font-size:11px;font-weight:700;border-radius:999px;padding:0 6px;margin-left:2px}
-.ch-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding:12px 16px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px}
-.ch-strip .prize{font-size:12.5px;opacity:.75}
-.ch-strip .go{margin-left:auto;font-weight:600;color:#FF8A84}
-.ch-strip:hover{filter:brightness(1.1)}
-.ch-chip{display:inline-flex;align-items:center;gap:4px;color:var(--try);font-weight:600}
-.ch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:16px;padding-block:6px 40px}
-.ch-card{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);min-width:0}
-.ch-card:hover{border-color:var(--ink)}
-.ch-card.done{box-shadow:none}
-.ch-card h3{margin:0;font-size:18px;color:var(--ink);letter-spacing:-.4px;line-height:1.25}
-.ch-card p{margin:0;font-size:13.5px;color:var(--soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-.ch-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.ch-top .dept{font-size:12.5px;color:var(--mortar)}
-.ch-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px}
-.ch-pill.open{background:var(--key-soft);color:var(--key-ink)}
-.ch-pill.judging{background:var(--hover);color:var(--ink)}
-.ch-pill.won{background:var(--hover);color:var(--try)}
-.ch-foot{display:flex;flex-direction:column;gap:2px;margin-top:auto;padding-top:8px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mortar)}
-.ch-foot .prize{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;font-size:13.5px}
-.ch-hero{padding-block:16px 8px}
-.ch-hero h1{font-size:clamp(26px,4vw,36px);margin-top:8px}
-.ch-brief{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:16px;margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
-@media (max-width:700px){.ch-brief{grid-template-columns:minmax(0,1fr)}}
-.ch-brief h4{margin:0;font-size:12px;font-weight:500;color:var(--mortar)}
-.ch-brief p{margin:3px 0 0;font-size:14.5px}
-.ch-how{font-size:13px;color:var(--soft);margin:12px 0 0;max-width:70ch}
-.ch-hero .actions{display:flex;gap:10px;flex-wrap:wrap}
-.win-banner{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:14px 16px;border-radius:12px;background:var(--key-soft);font-size:14px}
-.win-banner svg{flex:none;width:20px;height:20px;color:var(--key-ink)}
-.ch-note{display:flex;align-items:center;gap:10px;margin-top:14px;padding:11px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-size:13.5px;color:var(--text)}
-.ch-note svg{color:var(--try);flex:none}
-.ch-note .go{margin-left:auto;color:var(--soft)}
-.ch-two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.ix-strip{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:18px;padding:12px 16px;border-radius:12px;background:var(--ink);color:var(--bg);text-decoration:none;font-size:14px}
+.ix-strip .n{font-size:12.5px;opacity:.75}
+.ix-strip .go{margin-left:auto;font-weight:600;color:#FF8A84}
+.ix-strip:hover{filter:brightness(1.1)}
+.ix-chip{display:inline-flex;align-items:center;gap:4px;color:var(--try);font-weight:600}
+.ix-pill{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--hover);color:var(--c,var(--ink))}
+.ix-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c,var(--ink))}
+.ix-ico{display:grid;place-items:center;aspect-ratio:16/10;width:100%;border-radius:8px;background:var(--hover);color:var(--try);border:0;padding:0;cursor:pointer}
+.ix-ico svg{width:28px;height:28px}
+.ix-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.ix-top .dept{font-size:12.5px;color:var(--mortar)}
+.ix-hero{padding-block:16px 8px}
+.ix-hero h1{font-size:clamp(26px,4vw,36px);margin-top:8px}
+.ix-hero .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.ix-brief{margin-top:16px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.ix-brief h4{margin:0;font-size:12px;font-weight:500;color:var(--mortar)}
+.ix-brief p{margin:3px 0 0;font-size:14.5px}
+.ix-how{font-size:13px;color:var(--soft);margin:12px 0 0;max-width:70ch}
+.ix-banner{display:flex;gap:12px;align-items:flex-start;margin-top:18px;padding:14px 16px;border-radius:12px;background:var(--key-soft);font-size:14px}
+.ix-banner svg{flex:none;width:20px;height:20px;color:var(--key-ink)}
+.ix-banner a{color:var(--ink);font-weight:600}
+.ix-note{display:flex;align-items:center;gap:10px;margin-top:14px;padding:11px 14px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-size:13.5px;color:var(--text)}
+.ix-note svg{color:var(--try);flex:none}
+.ix-note .go{margin-left:auto;color:var(--soft)}
+.ix-similar{font-size:13px;color:var(--soft);background:var(--hover);border-radius:10px;padding:8px 12px}
+.ix-similar a{color:var(--ink);font-weight:600}
 .empty{text-align:center;padding:48px 16px;color:var(--soft)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -283,23 +276,16 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
 .call .by{font-size:12px;color:var(--mortar);margin-top:6px;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .notnow{margin-top:12px;font-size:13px;color:var(--soft);display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .notnow button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font-size:12.5px;color:var(--soft)}
-.chs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:14px}
-.chx{display:flex;flex-direction:column;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-width:0}
-.chx.won{box-shadow:none;background:linear-gradient(135deg,var(--surface),var(--hover))}
-.chx h3{margin:0;font-size:17px;line-height:1.25;letter-spacing:-.4px}
-.chx h3 a{color:var(--ink);text-decoration:none}
-.chx h3 a:hover{text-decoration:underline}
-.clock{height:6px;background:var(--line);border-radius:3px;overflow:hidden}
-.clock span{display:block;height:100%;background:var(--key);border-radius:3px}
-.clock-l{display:flex;justify-content:space-between;font-size:12px;color:var(--mortar);margin-top:-4px}
-.lead{display:grid;grid-template-columns:72px minmax(0,1fr);gap:10px;align-items:center;background:var(--hover);border-radius:10px;padding:8px}
-.lead .thumb{border-radius:6px}
-.lead small{display:block;font-size:11px;font-family:var(--f-mono);color:var(--mortar);text-transform:uppercase;letter-spacing:.3px}
-.lead strong{display:block;color:var(--ink);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.lead span{font-size:12px;color:var(--soft)}
-.chx .prize{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;font-size:13.5px}
-.chx .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:auto}
-.chx .btn{padding:7px 14px;font-size:13px}
+.ixs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:14px}
+.ixc{display:flex;flex-direction:column;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;box-shadow:var(--shadow);min-width:0}
+.ixc h3{margin:0;font-size:17px;line-height:1.25;letter-spacing:-.4px}
+.ixc h3 a{color:var(--ink);text-decoration:none}
+.ixc h3 a:hover{text-decoration:underline}
+.ixc p{margin:0;font-size:13.5px;color:var(--soft);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ixc .foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mortar)}
+.ixc .foot .vote{flex:none}
+.ixc .foot>span{flex:1;min-width:0}
+.sig-item .t.ix-t,.sig-item .t.ix-t span{white-space:normal}
 .lp{margin:34px 0 40px;background:var(--bar);border-radius:20px;padding:18px;color:#FFFFFF}
 .lp-h{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .lp-h h2{margin:0;font-size:19px;letter-spacing:-.5px;color:#FFFFFF}
@@ -398,34 +384,27 @@ dialog::backdrop{background:rgba(10,20,48,.5)}
   </form>
 </dialog>
 
-<dialog id="enter" aria-labelledby="enter-title">
-  <div class="dlg">
-    <h3 id="enter-title">Enter a build</h3>
-    <p class="lede">Pick one of your builds. Coworkers vote on entries, and leadership picks the winner.</p>
-    <div class="levels" id="enter-list"></div>
-    <div class="row-end"><button type="button" class="btn" id="enter-cancel">Cancel</button></div>
-  </div>
-</dialog>
-
-<dialog id="win" aria-labelledby="win-title">
-  <form class="dlg" id="win-form">
-    <h3 id="win-title">Pick the winner</h3>
-    <p class="lede">Weigh votes and how much people rely on it, fit with company direction, and how well it meets the brief.</p>
-    <div class="levels" id="win-list"></div>
-    <div class="field"><label for="win-why">Why it won (everyone sees this)</label><input type="text" id="win-why" placeholder="e.g. Cut report time from 4 hours to 90 minutes"></div>
-    <div class="row-end"><button type="button" class="btn" id="win-cancel">Cancel</button><button type="submit" class="btn key">Announce winner</button></div>
+<dialog id="newidea" aria-labelledby="ni-h">
+  <form class="dlg" id="ni-form">
+    <h3 id="ni-h">Post an idea</h3>
+    <p class="lede">Say what you need. You don't have to build it. Coworkers vote, and leadership decides what gets built and who builds it.</p>
+    <div class="field"><label for="ni-title">What do you need?</label><input type="text" id="ni-title" maxlength="90" placeholder="e.g. Turn field notes into a draft site report"></div>
+    <div class="ix-similar" id="ni-similar" hidden></div>
+    <div class="field"><label for="ni-problem">What's hard today?</label><textarea id="ni-problem" rows="3" placeholder="What you do now, how often, and who else it affects"></textarea></div>
+    <div class="field"><label for="ni-dept">Department</label><select id="ni-dept" class="status-sel" style="width:100%;margin:0"></select></div>
+    <div class="row-end"><button type="button" class="btn" id="ni-cancel">Cancel</button><button type="submit" class="btn primary">Post idea</button></div>
   </form>
 </dialog>
 
-<dialog id="newch" aria-labelledby="nc-h">
-  <form class="dlg" id="new-form">
-    <h3 id="nc-h">New challenge</h3>
-    <div class="field"><label for="nc-title">Challenge</label><input type="text" id="nc-title" placeholder="e.g. Cut site-visit report time in half"></div>
-    <div class="field"><label for="nc-dept">Department</label><select id="nc-dept" class="status-sel" style="width:100%;margin:0"></select></div>
-    <div class="field"><label for="nc-ask">What we need</label><textarea id="nc-ask" rows="3" placeholder="The problem, who has it, and what a good answer looks like"></textarea></div>
-    <div class="ch-two"><div class="field"><label for="nc-prize">Prize</label><input type="text" id="nc-prize" placeholder="e.g. $250 gift card"></div>
-    <div class="field"><label for="nc-close">Deadline</label><input type="date" id="nc-close" class="status-sel" style="width:100%;margin:0;box-sizing:border-box"></div></div>
-    <div class="row-end"><button type="button" class="btn" id="nc-cancel">Cancel</button><button type="submit" class="btn primary">Post challenge</button></div>
+<dialog id="istatus" aria-labelledby="is-h">
+  <form class="dlg" id="is-form">
+    <h3 id="is-h">Set status</h3>
+    <p class="lede" id="is-facts"></p>
+    <div class="levels" id="is-levels"></div>
+    <div class="field" id="is-builder-f"><label for="is-builder">Who builds it</label><select id="is-builder" class="status-sel" style="width:100%;margin:0"><option value="voosa">Voosa builds it (support hours)</option><option value="inhouse">Built in-house</option><option value="open">Open to any builder</option></select></div>
+    <div class="field" id="is-build-f"><label for="is-build">The build that answers it</label><select id="is-build" class="status-sel" style="width:100%;margin:0"></select></div>
+    <div class="field"><label for="is-why">Why (everyone sees this)</label><input type="text" id="is-why" placeholder="e.g. Biggest time sink in the field"></div>
+    <div class="row-end"><button type="button" class="btn" id="is-cancel">Cancel</button><button type="submit" class="btn primary">Save</button></div>
   </form>
 </dialog>
 
@@ -551,22 +530,34 @@ var SEED_DEC={
 };
 BUILDS.forEach(function(b){b.impact=SEED_IMPACT[b.id]||{};b.decision=SEED_DEC[b.id]||null});
 function snap(b){return{id:b.id,votes:b.votes,impact:b.impact,shares:b.shares,comments:b.comments,decision:b.decision}}
-var CHALLENGES=[
-  {id:'site-reports',co:'omitz',dept:'Field Safety',title:'Cut site-visit report time in half',ask:'Field staff spend 3-4 hours writing up each site visit. Build something that turns field notes, photos and checklist results into a draft report.',prize:'$250 gift card and a Friday off',by:'phil',opens:'2026-10-06',closes:'2026-11-14',entries:['bess-kit','hydrogen-safety','glove-guide'],winner:null,winWhy:''},
-  {id:'training-sticks',co:'omitz',dept:'Training',title:'Make annual training stick',ask:'Annual compliance training is a slide deck nobody remembers. Build a way to train people that they would actually finish and recall.',prize:'Team lunch on the company',by:'doug',opens:'2026-08-01',closes:'2026-09-15',entries:['ethics-compass'],winner:'ethics-compass',winWhy:'Six people voted for it and completions went up. It is now how we run ethics training.'},
-  {id:'homework-fun',co:'personal',dept:'Family',title:'Make homework something the kids ask for',ask:'Turn one subject into a game the kids will choose over screens.',prize:'Pick the next family trip',by:'phil',opens:'2026-08-01',closes:'2026-11-30',entries:['bow-hunter-math','spell-it-out'],winner:null,winWhy:''}
+var ISTATUS={review:{label:'Needs review',c:'var(--mortar)',desc:'New. Leadership hasn\u2019t looked yet'},
+  considering:{label:'Under consideration',c:'var(--try)',desc:'Leadership is weighing it'},
+  planned:{label:'Planned',c:'var(--ink)',desc:'Will be built. Say who builds it'},
+  building:{label:'Being built',c:'var(--key)',desc:'Work has started'},
+  live:{label:'Live',c:'var(--live)',desc:'A build answers it. Link the build'},
+  wontdo:{label:'Won\u2019t do',c:'var(--mortar)',desc:'Not now. Say why'}};
+var BUILDER={voosa:'Voosa builds it',inhouse:'Built in-house',open:'Open to any builder'};
+function iv(list){var v=[],m={};list.forEach(function(x){v.push(x[0]);m[x[0]]=x[1]});return{votes:v,impact:m}}
+function mkIdea(o,votes){var x=iv(votes);o.votes=x.votes;o.impact=x.impact;o.comments=o.comments||[];return o}
+var IDEAS=[
+  mkIdea({id:'site-report-draft',co:'omitz',dept:'Field Safety',name:'Turn field notes into a draft site report',problem:'Writing up each site visit from notes, photos and the checklist takes 3 to 4 hours. Most of it is retyping.',by:'maria',t:'2026-09-22',status:'planned',builder:'voosa',build:null,why:'Biggest time sink in the field. Voosa estimates about 20 support hours.',sby:'phil',st:'2026-10-14',
+    comments:[{u:'sam',t:'2026-09-25',b:'Same for us. If it could pull the photos in with captions, even better.'}]},[['maria',3],['sam',3],['tom',2],['priya',3],['jordan',2]]),
+  mkIdea({id:'training-due',co:'omitz',dept:'Training',name:'See who is due for which training',problem:'Training dates live in three spreadsheets. We find out someone lapsed when a client asks for their card.',by:'jordan',t:'2026-10-02',status:'considering',builder:null,build:null,why:'',sby:null,st:null},[['jordan',3],['priya',2],['maria',2]]),
+  mkIdea({id:'sds-phone',co:'omitz',dept:'Regulatory',name:'Search our SDS binder from my phone',problem:'On site I have to call the office to check a safety data sheet.',by:'sam',t:'2026-10-18',status:'review',builder:null,build:null,why:'',sby:null,st:null},[['sam',2],['tom',2]]),
+  mkIdea({id:'ethics-stick',co:'omitz',dept:'Training',name:'Make annual ethics training stick',problem:'Annual ethics training is a slide deck nobody remembers.',by:'doug',t:'2026-07-20',status:'live',builder:'inhouse',build:'ethics-compass',why:'Phil built Ethics Compass. Completions went up.',sby:'phil',st:'2026-08-12'},[['doug',3],['maria',2],['jordan',2]]),
+  mkIdea({id:'receipt-snap',co:'omitz',dept:'Regulatory',name:'Snap receipts instead of the expense sheet',problem:'Expense sheets are retyped from paper receipts every month.',by:'tom',t:'2026-09-01',status:'wontdo',builder:null,build:null,why:'Our accounting system adds receipt capture in January.',sby:'doug',st:'2026-09-10'},[['tom',2]]),
+  mkIdea({id:'homework-game',co:'personal',dept:'Family',name:'Make homework a game the kids ask for',problem:'Homework is a nightly fight.',by:'jen',t:'2026-08-01',status:'building',builder:'inhouse',build:null,why:'Phil is trying a math game first.',sby:'phil',st:'2026-09-05'},[['jen',3],['kids',2]])
 ];
-var SEED=JSON.stringify(BUILDS.map(snap));
-var SEED_CH=JSON.stringify(CHALLENGES);
+var SEED_ID=JSON.stringify(IDEAS);
 
 /* ---------- state ---------- */
-var KEY='voosa-catalog-v5';
+var KEY='voosa-catalog-v6';
 function byId(id){for(var i=0;i<BUILDS.length;i++)if(BUILDS[i].id===id)return BUILDS[i]}
 function apply(list){list.forEach(function(x){var b=byId(x.id);if(b){b.votes=x.votes;b.impact=x.impact||{};b.shares=x.shares;b.comments=x.comments;b.decision=x.decision||null}})}
-function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds)apply(s.builds);if(s&&s.challenges)CHALLENGES=s.challenges;return s||{}}catch(e){return{}}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(snap),challenges:CHALLENGES}))}catch(e){}}
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY)||'null');if(s&&s.builds)apply(s.builds);if(s&&s.ideas)IDEAS=s.ideas;return s||{}}catch(e){return{}}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({co:state.co,me:state.me,sort:state.sort,builds:BUILDS.map(snap),ideas:IDEAS}))}catch(e){}}
 var saved=load();
-var state={co:saved.co||'omitz',me:saved.me||'phil',sort:saved.sort||'top',dept:'all',status:'all'};
+var state={co:saved.co||'omitz',me:saved.me||'phil',sort:saved.sort||'top',dept:'all',status:'all',isort:'top',ifilter:'open'};
 
 /* ---------- helpers ---------- */
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -624,16 +615,16 @@ function decChip(b){var d=b.decision;if(!d)return'';
   if(d.kind==='critical')return'<span class="crit">'+SHIELD+'Critical</span>';
   if(d.kind==='priority')return'<span class="crit">'+COMPASS+'Priority</span>';
   if(d.kind==='notnow')return'<span class="muted-chip">Not now</span>';return''}
-function meta(b){var r=relyCount(b),ch=chFor(b).filter(function(c){return c.winner===b.id});return'<div class="meta">'+(ch.length?'<span class="ch-chip">'+TROPHY+(ch[0].winner===b.id?'Challenge winner':'In a challenge')+'</span>':'')+decChip(b)+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(r?'<span class="rely">'+r+' rel'+(r===1?'ies':'y')+' on it</span>':'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+'</div>'}
-function nav(){var n=document.getElementById('nav'),h=location.hash,s=h==='#steer',c=h==='#challenges'||h.indexOf('#ch-')===0,k=openChs().length;
-  n.innerHTML='<a href="#" aria-current="'+(!s&&!c)+'">Catalog</a><a href="#challenges" aria-current="'+c+'">'+TROPHY+'Challenges'+(k?'<span class="badge">'+k+'</span>':'')+'</a>'+'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>'}
+function meta(b){var r=relyCount(b),ia=ideaForBuild(b);return'<div class="meta">'+(ia?'<span class="ix-chip">'+BULB+'Answers an idea</span>':'')+decChip(b)+statusDot(b)+'<span>'+esc(b.dept)+'</span>'+(b.votes.length?faces(b):'')+(r?'<span class="rely">'+r+' rel'+(r===1?'ies':'y')+' on it</span>':'')+(b.comments.length?'<span class="cm">'+CMT+b.comments.length+'</span>':'')+'</div>'}
+function nav(){var n=document.getElementById('nav'),h=location.hash,s=h==='#steer',c=h==='#ideas'||h.indexOf('#idea-')===0,k=waitingIdeas().length;
+  n.innerHTML='<a href="#" aria-current="'+(!s&&!c)+'">Catalog</a><a href="#ideas" aria-current="'+c+'">'+BULB+'Ideas'+(k?'<span class="badge">'+k+'</span>':'')+'</a>'+'<a href="#steer" aria-current="'+s+'">'+COMPASS+'Steer</a>'}
 
 /* ---------- pickers ---------- */
 var coSel=document.getElementById('co'),meSel=document.getElementById('me');
 coSel.innerHTML=Object.keys(COMPANIES).map(function(k){return'<option value="'+k+'">'+COMPANIES[k].name+'</option>'}).join('');
 function fillMe(){var m=COMPANIES[state.co].members;if(m.indexOf(state.me)<0)state.me='phil';meSel.innerHTML=m.map(function(u){return'<option value="'+u+'">'+PEOPLE[u]+(OWNERS.indexOf(u)>=0?' (leadership)':'')+'</option>'}).join('');meSel.value=state.me}
 coSel.value=state.co;fillMe();
-coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash&&location.hash!=='#steer'&&location.hash!=='#challenges')location.hash='';else render()};
+coSel.onchange=function(){state.co=coSel.value;state.dept='all';fillMe();save();if(location.hash&&location.hash!=='#steer'&&location.hash!=='#ideas')location.hash='';else render()};
 meSel.onchange=function(){state.me=meSel.value;save();render()};
 
 /* ---------- catalog ---------- */
@@ -647,7 +638,7 @@ function catalog(){
   h+='<div class="controls"><div class="tabs" role="group" aria-label="Sort"><button data-sort="top" aria-pressed="'+(state.sort==='top')+'">Top</button><button data-sort="new" aria-pressed="'+(state.sort==='new')+'">New</button></div>'+
      '<div class="depts" role="group" aria-label="Department">'+['all'].concat(co.depts).map(function(dp){return'<button data-dept="'+esc(dp)+'" aria-pressed="'+(state.dept===dp)+'">'+(dp==='all'?'All':esc(dp))+'</button>'}).join('')+'</div>'+
      '<select class="status-sel" id="status" aria-label="Status"><option value="all">Any status</option><option value="tryout">Try-out</option><option value="live">Live</option></select></div>';
-  h+=chStrip();
+  h+=ideaStrip();
   if(!list.length)return h+'<div class="empty">No builds match these filters yet.</div>';
   var crit=[];
   if(crit.length){h+='<section class="crit-lane" aria-label="Critical apps"><div class="lane-h"><span class="shield">'+SHIELD+'</span>Critical <small>Set by leadership, regardless of votes</small></div>';
@@ -671,15 +662,14 @@ function steer(){
   var list=BUILDS.filter(function(b){return b.co===state.co}).sort(function(a,b){return score(b)-score(a)||b.votes.length-a.votes.length});
   var voters={},votes=0,rely=0;list.forEach(function(b){votes+=b.votes.length;rely+=relyCount(b);b.votes.forEach(function(u){voters[u]=1})});
   var nVoters=Object.keys(voters).length,nMem=co.members.length;
-  var chs=CHALLENGES.filter(function(c){return c.co===state.co}).sort(function(a,b){return(a.winner?1:0)-(b.winner?1:0)||a.closes.localeCompare(b.closes)});
-  var open=chs.filter(function(c){return!c.winner}),soon=open.map(daysLeft).filter(function(d){return d>0}).sort(function(a,b){return a-b})[0];
+  var ids=coIdeas(),waitI=waitingIdeas(),openI=ids.filter(isOpenIdea).sort(byIdeaScore);
   var calls=list.filter(function(b){return b.decision&&b.decision.kind!=='notnow'}),order={critical:0,priority:1,watch:2};
   calls.sort(function(a,b){return order[a.decision.kind]-order[b.decision.kind]||score(b)-score(a)});
   var nots=list.filter(function(b){return b.decision&&b.decision.kind==='notnow'});
-  var h='<div class="head"><div><h1>Steer '+esc(co.name)+'</h1><p class="sub">Where '+esc(co.name)+' is headed, and why.'+(own?' The navy panel at the bottom is just for leadership.':'')+'</p></div>'+(own?'<button class="btn primary" id="new-ch">+ New challenge</button>':'')+'</div>';
+  var h='<div class="head"><div><h1>Steer '+esc(co.name)+'</h1><p class="sub">Where '+esc(co.name)+' is headed, and why.'+(own?' The navy panel at the bottom is just for leadership.':'')+'</p></div>'+'<button class="btn primary" id="new-idea">+ Post an idea</button></div>';
   function stat(n,l,sm,c){return'<div class="stat" style="--c:'+c+'"><b>'+n+'</b><span>'+l+'</span><small>'+sm+'</small></div>'}
   h+='<div class="pulse">'+stat(votes,'votes cast',nVoters+' of '+nMem+' people have voted','var(--ink)')+stat(rely,'“I rely on it” votes','apps people can’t do without','var(--key)')+
-     stat(open.length,'open challenge'+(open.length===1?'':'s'),soon?'next closes in '+soon+' day'+(soon===1?'':'s'):'post one to get people building','var(--try)')+
+     stat(waitI.length,'idea'+(waitI.length===1?'':'s')+' waiting on a decision',ids.length+' posted so far','var(--try)')+
      stat(calls.length,'leadership call'+(calls.length===1?'':'s'),'each with a public reason','var(--live)')+'</div>';
   var mine=list.filter(function(b){return b.votes.indexOf(me)>=0}),mineCalled=mine.filter(function(b){return b.decision&&b.decision.kind!=='notnow'});
   h+='<div class="you"><i style="background:'+COLORS[me]+'">'+initials(me)+'</i><span>'+(mine.length?'You’ve voted for '+mine.length+' app'+(mine.length===1?'':'s')+' here. '+(mineCalled.length?mineCalled.length+' of them '+(mineCalled.length===1?'has':'have')+' a leadership call: <strong>'+esc(mineCalled.map(function(b){return b.name}).join(', '))+'</strong>.':'None has a leadership call yet. Share the ones you rely on.'):'You haven’t voted here yet. Your votes are how leadership sees what matters. <a href="#">Go vote →</a>')+'</span></div>';
@@ -690,19 +680,11 @@ function steer(){
       (d.why?'<q>'+esc(d.why)+'</q>':'')+'<div class="by"><span>— '+esc(PEOPLE[d.by])+', '+fmtS(d.t)+'</span>'+(own?'<button class="linkbtn" data-decide="'+b.id+'">Change</button>':'')+'</div><div class="by">'+b.votes.length+' vote'+(b.votes.length===1?'':'s')+', '+relyCount(b)+' rel'+(relyCount(b)===1?'ies':'y')+' on it</div></div></article>'});
     h+='</div>'}else h+='<div class="empty" style="padding:24px">No calls yet.'+(own?' Pick an app in the panel below.':' Leadership hasn’t pointed anywhere yet.')+'</div>';
   if(nots.length)h+='<div class="notnow"><span>Not now:</span>'+nots.map(function(b){return'<button data-open="'+b.id+'" title="'+esc(b.decision.why||'')+'">'+esc(b.name)+'</button>'}).join('')+'</div>';
-  // challenges
-  h+='<div class="st-h"><div><h2>'+TROPHY+' Challenges</h2><p>Leadership names a problem and a prize. Build it, enter it, rally votes.</p></div><a class="linkbtn" href="#challenges">All challenges →</a></div>';
-  if(!chs.length)h+='<div class="empty" style="padding:24px">No challenges yet.'+(own?' Post the first one.':'')+'</div>';
-  else{h+='<div class="chs">';chs.forEach(function(c){var top=entriesRanked(c)[0],w=c.winner?byId(c.winner):null,dl=daysLeft(c);
-    var tot=Math.max(1,(d(c.closes)-d(c.opens))),pct=Math.min(100,Math.max(0,(Date.now()-d(c.opens))/tot*100));
-    h+='<article class="chx'+(w?' won':'')+'"><div class="ch-top"><span class="dept">'+esc(c.dept)+'</span>'+chState(c)+'</div><h3><a href="#ch-'+c.id+'">'+esc(c.title)+'</a></h3>'+
-      '<span class="prize">'+TROPHY+esc(c.prize)+'</span>';
-    if(!w)h+='<div class="clock"><span style="width:'+pct.toFixed(0)+'%"></span></div><div class="clock-l"><span>Opened '+fmtS(c.opens)+'</span><span>'+(dl>0?dl+' day'+(dl===1?'':'s')+' left':'Closed '+fmtS(c.closes))+'</span></div>';
-    var lb=w||top;
-    if(lb)h+='<div class="lead">'+thumb(lb)+'<div style="min-width:0"><small>'+(w?'Winner':'Leading · '+c.entries.length+' entr'+(c.entries.length===1?'y':'ies'))+'</small><strong>'+esc(lb.name)+'</strong><span>'+(w?'“'+esc(c.winWhy)+'”':lb.votes.length+' votes, '+relyCount(lb)+' rely on it')+'</span></div></div>';
-    else h+='<div class="lead" style="grid-template-columns:1fr"><span>No entries yet. Be the first.</span></div>';
-    if(!w)h+='<div class="actions"><a class="btn key" href="#ch-'+c.id+'">Enter a build</a>'+(own&&c.entries.length&&dl<=0?'<a class="btn" href="#ch-'+c.id+'">Pick the winner</a>':'<a class="btn" href="#ch-'+c.id+'">See entries</a>')+'</div>';
-    h+='</article>'});h+='</div>'}
+  // ideas
+  h+='<div class="st-h"><div><h2>'+BULB+' Ideas</h2><p>What people need. Leadership decides what gets built and who builds it.</p></div><a class="linkbtn" href="#ideas">All ideas →</a></div>';
+  var showI=openI.slice(0,3).concat(ids.filter(function(i){return i.status==='live'}).slice(0,1));
+  if(!showI.length)h+='<div class="empty" style="padding:24px">No ideas yet. Post the first one.</div>';
+  else h+='<div class="ixs">'+showI.map(ideaCard).join('')+'</div>';
   if(!own)return h+'<p class="legend">Leadership also sees which apps are waiting on a decision and which have a small but devoted following.</p>';
   // leadership panel
   var waiting=list.filter(function(b){return b.votes.length>=THRESHOLD&&!b.decision});
@@ -713,7 +695,8 @@ function steer(){
   h+='<div class="signals">'+
     sig('Waiting on a decision','Popular apps nobody has set a direction for yet.',waiting,function(b){return b.votes.length+' votes, '+relyCount(b)+' rely on it'},'var(--key)')+
     sig('Hidden gems','Few votes, but the people who use it depend on it.',gems,function(b){return relyCount(b)+' of '+b.votes.length+' rely on it'},'var(--live)')+
-    sig('Popular but shallow','Lots of votes, mostly “nice to have”.',shallow,function(b){return b.votes.length+' votes, avg '+avg(b).toFixed(1)+' of 3'},'var(--try)')+'</div>';
+    sig('Popular but shallow','Lots of votes, mostly “nice to have”.',shallow,function(b){return b.votes.length+' votes, avg '+avg(b).toFixed(1)+' of 3'},'var(--try)')+
+    isig('Most wanted ideas, no decision','Ideas people want that nobody has decided on yet.',waitI.slice().sort(byIdeaScore).filter(function(i){return i.votes.length>=2}),'var(--ink)')+'</div>';
   h+='<div class="tbl-wrap"><table class="tbl"><thead><tr><th>App</th><th class="num">People</th><th>How much it helps</th><th class="num">Score</th><th>Direction</th></tr></thead><tbody>';
   list.forEach(function(b){var c={1:0,2:0,3:0};b.votes.forEach(function(u){c[lvl(b,u)]++});var n=b.votes.length||1;
     h+='<tr><td><div class="appc">'+thumb(b)+'<div style="min-width:0"><button class="name" data-open="'+b.id+'">'+esc(b.name)+'</button><div class="sub-cell">'+esc(b.dept)+' · '+(b.status==='live'?'Live':'Try-out')+'</div></div></div></td>'+
@@ -735,7 +718,7 @@ function buildPage(b){
      (mine?'<p class="you-said">You said: <strong>'+IMPACT[lvl(b,state.me)]+'</strong> <button class="linkbtn" data-rate="'+b.id+'">Change</button></p>':'')+
      '<div class="byline"><span class="av" style="width:24px;height:24px;font-size:10px;background:'+COLORS.phil+'">PC</span>'+esc(PEOPLE.phil)+' · built with '+esc(b.tool)+' · '+fmt(b.up)+' · '+statusDot(b)+'</div></div></section>';
   h+='<div class="bp"><div style="min-width:0">';
-  chFor(b).forEach(function(c){h+='<a class="ch-note" href="#ch-'+c.id+'">'+TROPHY+'<span>'+(c.winner===b.id?'Won the challenge':'Entered in the challenge')+' <strong>'+esc(c.title)+'</strong></span><span class="go">→</span></a>'});
+  var ia=ideaForBuild(b);if(ia)h+='<a class="ix-note" href="#idea-'+ia.id+'">'+BULB+'<span>Answers the idea <strong>'+esc(ia.name)+'</strong>, posted by '+esc(PEOPLE[ia.by])+'</span><span class="go">→</span></a>';
   var d=b.decision;
   if(d)h+='<div class="crit-note"><span class="shield">'+(d.kind==='critical'?SHIELD:COMPASS)+'</span><div><strong>Leadership: '+esc(DEC[d.kind].label)+'.</strong> '+esc(DEC[d.kind].desc)+'. “'+esc(d.why)+'” — '+esc(PEOPLE[d.by])+', '+fmtS(d.t)+(isOwner()?' <button class="linkbtn" data-decide="'+b.id+'">Change</button>':'')+'</div></div>';
   else if(isOwner())h+='<div style="margin-top:12px"><button class="btn" data-decide="'+b.id+'">'+COMPASS+' Set direction</button></div>';
@@ -754,57 +737,72 @@ function buildPage(b){
   return h;
 }
 
-/* ---------- challenges ---------- */
-var TROPHY='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0zM8 6H4a3 3 0 0 0 4 4M16 6h4a3 3 0 0 1-4 4M12 13v4M8 21h8M9 17h6"/></svg>';
-function chById(id){for(var i=0;i<CHALLENGES.length;i++)if(CHALLENGES[i].id===id)return CHALLENGES[i]}
-function chFor(b){return CHALLENGES.filter(function(c){return c.entries.indexOf(b.id)>=0})}
-function openChs(){return CHALLENGES.filter(function(c){return c.co===state.co&&!c.winner})}
-function daysLeft(c){return Math.ceil((new Date(c.closes+'T23:59:00Z')-new Date())/864e5)}
-function chState(c){if(c.winner)return'<span class="ch-pill won">'+TROPHY+'Winner picked</span>';var d=daysLeft(c);
-  return d>0?'<span class="ch-pill open">Open · '+d+' day'+(d===1?'':'s')+' left</span>':'<span class="ch-pill judging">Judging</span>'}
-function chStrip(){var o=openChs().filter(function(c){return state.dept==='all'||c.dept===state.dept});if(!o.length)return'';var c=o[0];
-  return'<a class="ch-strip" href="#ch-'+c.id+'">'+TROPHY+'<span><strong>Challenge in '+esc(c.dept)+':</strong> '+esc(c.title)+'</span><span class="prize">'+esc(c.prize)+'</span><span class="go">See entries →</span></a>'}
-function challengesPage(){
-  var co=COMPANIES[state.co],list=CHALLENGES.filter(function(c){return c.co===state.co}).sort(function(a,b){return(a.winner?1:0)-(b.winner?1:0)||a.closes.localeCompare(b.closes)});
-  var h='<div class="head"><div><h1>Challenges</h1><p class="sub">Leadership names a problem and a prize. Build something, enter it, and get your coworkers’ votes.</p></div>'+(isOwner()?'<button class="btn primary" id="new-ch">+ New challenge</button>':'')+'</div>';
-  if(!list.length)return h+'<div class="empty">No challenges at '+esc(co.name)+' yet.'+(isOwner()?' Post the first one.':'')+'</div>';
-  h+='<div class="ch-grid">';
-  list.forEach(function(c){var top=entriesRanked(c)[0];
-    h+='<a class="ch-card'+(c.winner?' done':'')+'" href="#ch-'+c.id+'"><div class="ch-top"><span class="dept">'+esc(c.dept)+'</span>'+chState(c)+'</div><h3>'+esc(c.title)+'</h3><p>'+esc(c.ask)+'</p>'+
-      '<div class="ch-foot"><span class="prize">'+TROPHY+esc(c.prize)+'</span><span>'+c.entries.length+' entr'+(c.entries.length===1?'y':'ies')+(c.winner?' · won by '+esc(byId(c.winner).name):top?' · leading: '+esc(top.name):'')+'</span></div></a>'});
-  return h+'</div>';
+/* ---------- ideas ---------- */
+var BULB='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg>';
+function ideaById(id){for(var i=0;i<IDEAS.length;i++)if(IDEAS[i].id===id)return IDEAS[i]}
+function coIdeas(){return IDEAS.filter(function(i){return i.co===state.co})}
+function ideaForBuild(b){for(var i=0;i<IDEAS.length;i++)if(IDEAS[i].build===b.id)return IDEAS[i]}
+function isOpenIdea(i){return i.status!=='live'&&i.status!=='wontdo'}
+function waitingIdeas(){return coIdeas().filter(function(i){return i.status==='review'||i.status==='considering'})}
+function byIdeaScore(a,b){return score(b)-score(a)||b.votes.length-a.votes.length||b.t.localeCompare(a.t)}
+function ipill(i){var st=ISTATUS[i.status];return'<span class="ix-pill" style="--c:'+st.c+'">'+esc(st.label)+'</span>'}
+function ideaVote(i,wide){var mine=i.votes.indexOf(state.me)>=0,n=score(i);
+  return'<button class="vote'+(wide?' wide':'')+'" data-ivote="'+i.id+'" aria-pressed="'+mine+'" aria-label="'+(mine?'Your vote: '+IMPACT[lvl(i,state.me)]:'Vote')+', score '+n+'">'+UP+'<span>'+(wide?(mine?'You: '+IMPACT[lvl(i,state.me)]+' · ':'Vote · '):'')+n+'</span></button>'}
+function ideaMeta(i){var r=relyCount(i);return'<div class="meta">'+ipill(i)+'<span>'+esc(i.dept)+'</span>'+(i.votes.length?faces(i):'')+(r?'<span class="rely">'+r+' would rely on it</span>':'')+(i.comments.length?'<span class="cm">'+CMT+i.comments.length+'</span>':'')+'</div>'}
+function ideaRow(i,rank){return'<article class="row"><span class="rank">'+rank+'</span><button class="ix-ico" data-idea="'+i.id+'" aria-label="'+esc(i.name)+'">'+BULB+'</button><div style="min-width:0"><button class="name" data-idea="'+i.id+'">'+esc(i.name)+'</button><p class="tagline">'+esc(i.problem)+'</p>'+ideaMeta(i)+'</div>'+ideaVote(i)+'</article>'}
+function ideaCard(i){return'<article class="ixc"><div class="ix-top"><span class="dept" style="font-size:12.5px;color:var(--mortar)">'+esc(i.dept)+'</span>'+ipill(i)+'</div><h3><a href="#idea-'+i.id+'">'+esc(i.name)+'</a></h3><p>'+esc(i.problem)+'</p>'+
+  '<div class="foot"><span>'+i.votes.length+' vote'+(i.votes.length===1?'':'s')+', '+relyCount(i)+' would rely on it'+(i.builder?' · '+esc(BUILDER[i.builder]):'')+'</span>'+ideaVote(i)+'</div></article>'}
+function isig(title,desc,items,c){return'<div class="sig" style="--c:'+c+'"><h3><i></i>'+title+(items.length?' · '+items.length:'')+'</h3><p>'+desc+'</p>'+(items.length?items.map(function(i){return'<button class="sig-item" data-istatus="'+i.id+'"><span class="thumb ix-ico" aria-hidden="true">'+BULB+'</span><span class="t ix-t"><strong>'+esc(i.name)+'</strong><span>'+i.votes.length+' votes, score '+score(i)+'</span></span><span class="go">Set status</span></button>'}).join(''):'<span class="none">Nothing right now</span>')+'</div>'}
+function ideaStrip(){var n=coIdeas().filter(isOpenIdea).length;
+  return'<a class="ix-strip" href="#ideas">'+BULB+'<span><strong>Don’t see what you need?</strong> Post an idea. You don’t have to build it.</span>'+(n?'<span class="n">'+n+' open idea'+(n===1?'':'s')+'</span>':'')+'<span class="go">Ideas →</span></a>'}
+function ideasPage(){
+  var co=COMPANIES[state.co],f=state.ifilter,list=coIdeas().filter(function(i){return f==='all'||(f==='open'?isOpenIdea(i):i.status===f)}).filter(function(i){return state.dept==='all'||i.dept===state.dept});
+  list.sort(state.isort==='top'?byIdeaScore:function(a,b){return b.t.localeCompare(a.t)});
+  var h='<div class="head"><div><h1>'+esc(co.name)+' ideas</h1><p class="sub">Need a tool? Post it here and vote on what others need. Leadership decides what gets built and who builds it, so you don’t have to build it yourself.</p></div><button class="btn primary" id="new-idea">+ Post an idea</button></div>';
+  h+='<div class="controls"><div class="tabs" role="group" aria-label="Sort"><button data-isort="top" aria-pressed="'+(state.isort==='top')+'">Top</button><button data-isort="new" aria-pressed="'+(state.isort==='new')+'">New</button></div>'+
+     '<div class="depts" role="group" aria-label="Department">'+['all'].concat(co.depts).map(function(dp){return'<button data-dept="'+esc(dp)+'" aria-pressed="'+(state.dept===dp)+'">'+(dp==='all'?'All':esc(dp))+'</button>'}).join('')+'</div>'+
+     '<select class="status-sel" id="ifilter" aria-label="Status"><option value="open">Open ideas</option><option value="all">All ideas</option>'+Object.keys(ISTATUS).map(function(k){return'<option value="'+k+'">'+ISTATUS[k].label+'</option>'}).join('')+'</select></div>';
+  if(!list.length)return h+'<div class="empty">No ideas match these filters yet. Post one.</div>';
+  h+='<div class="list">';list.forEach(function(i,n){h+=ideaRow(i,state.isort==='top'?n+1:'')});
+  return h+'</div><p class="legend">Vote with how much it would help you: I’d rely on it (3), saves me time (2), nice to have (1).</p>';
 }
-function entriesRanked(c){return c.entries.map(byId).sort(function(a,b){return score(b)-score(a)||b.votes.length-a.votes.length})}
-function challengePage(c){
-  var h='<a class="back" href="#challenges">← All challenges</a>';
-  h+='<section class="ch-hero"><div class="ch-top"><span class="dept">'+esc(c.dept)+'</span>'+chState(c)+'</div><h1>'+esc(c.title)+'</h1>'+
-     '<div class="ch-brief"><div><h4>What we need</h4><p>'+esc(c.ask)+'</p></div><div><h4>Prize</h4><p>'+esc(c.prize)+'</p></div><div><h4>Deadline</h4><p>'+fmtS(c.closes)+'</p></div></div>'+
-     '<p class="ch-how">Posted by '+esc(PEOPLE[c.by])+'. Leadership picks the winner based on votes and how much people rely on it, fit with company direction, and how well it meets the brief.</p>'+
-     (c.winner?'':'<div class="actions" style="margin-top:14px"><button class="btn key" id="enter-ch">Enter a build</button>'+(isOwner()&&c.entries.length?'<button class="btn" id="pick-win">'+TROPHY+' Pick the winner</button>':'')+'</div>')+'</section>';
-  if(c.winner){var w=byId(c.winner);h+='<div class="win-banner">'+TROPHY+'<div><strong>'+esc(w.name)+' won.</strong> “'+esc(c.winWhy)+'” — '+esc(PEOPLE[c.by])+(isOwner()?' <button class="linkbtn" id="reopen-ch">Reopen</button>':'')+'</div></div>'}
-  h+='<h2 class="section-h">Entries'+(c.entries.length?' · '+c.entries.length:'')+'</h2>';
-  if(!c.entries.length)h+='<div class="empty" style="padding:28px">No entries yet. Be the first.</div>';
-  h+='<div class="list" style="padding-top:0">';
-  entriesRanked(c).forEach(function(b,i){h+=row(b,c.winner===b.id?TROPHY:(i+1))});
-  return h+'</div>';
+function ideaPage(i){
+  var st=ISTATUS[i.status],b=i.build?byId(i.build):null;
+  var h='<a class="back" href="#ideas">← All ideas</a>';
+  h+='<section class="ix-hero"><div class="ix-top"><span class="dept">'+esc(i.dept)+'</span>'+ipill(i)+'</div><h1>'+esc(i.name)+'</h1>'+
+     '<div class="ix-brief"><h4>What’s hard today</h4><p>'+esc(i.problem)+'</p></div>'+
+     '<p class="ix-how">Posted by '+esc(PEOPLE[i.by])+', '+fmtS(i.t)+'. Vote with how much it would help you. Leadership decides what gets built and who builds it.</p>'+
+     '<div class="actions">'+ideaVote(i,true)+(isOwner()?'<button class="btn" id="set-status">Set status</button>':'')+'</div></section>';
+  if(i.why||i.builder||b)h+='<div class="ix-banner">'+BULB+'<div><strong>'+esc(st.label)+'.</strong> '+(i.why?'“'+esc(i.why)+'”'+(i.sby?' — '+esc(PEOPLE[i.sby])+(i.st?', '+fmtS(i.st):''):''):'')+
+     (i.builder?(i.why?'. ':'')+'<span>'+esc(BUILDER[i.builder])+'.</span>':'')+(b?' <a href="#'+b.id+'">Open '+esc(b.name)+' →</a>':'')+'</div></div>';
+  if(i.votes.length){var r=relyCount(i);h+='<div class="meta" style="margin-top:12px">'+faces(i)+'<span>'+i.votes.map(function(u){return PEOPLE[u].split(' ')[0]}).join(', ')+' voted'+(r?' · '+r+' would rely on it':'')+'</span></div>'}
+  h+='<h2 class="section-h">Comments'+(i.comments.length?' · '+i.comments.length:'')+'</h2><div class="comments">';
+  if(!i.comments.length)h+='<p style="margin:0;color:var(--soft);font-size:14px">No comments yet. Add how this would help you.</p>';
+  i.comments.forEach(function(c){h+='<div class="cmt"><div class="av" style="background:'+COLORS[c.u]+'">'+initials(c.u)+'</div><div class="body"><span class="who">'+esc(PEOPLE[c.u])+'</span><span class="when">'+fmtS(c.t)+'</span><p>'+esc(c.b)+'</p></div></div>'});
+  h+='</div><form class="add-cmt" id="cmt-form"><div class="av" style="background:'+COLORS[state.me]+'">'+initials(state.me)+'</div><textarea id="cmt" rows="2" aria-label="Comment as '+esc(PEOPLE[state.me])+'" placeholder="How would this help your work?"></textarea><button class="btn primary" type="submit">Post</button></form>';
+  return h;
 }
 
 /* ---------- render + events ---------- */
 var app=document.getElementById('app');
 function current(){var b=byId(location.hash.slice(1));if(b&&b.co!==state.co){state.co=b.co;coSel.value=b.co;fillMe()}return b}
 function render(){
-  var b=current(),hs=location.hash,st=hs==='#steer',chl=hs==='#challenges',ch=hs.indexOf('#ch-')===0?chById(hs.slice(4)):null;
-  if(ch&&ch.co!==state.co){state.co=ch.co;coSel.value=ch.co;fillMe()}
+  var b=current(),hs=location.hash,st=hs==='#steer',il=hs==='#ideas',idea=hs.indexOf('#idea-')===0?ideaById(hs.slice(6)):null;
+  if(idea&&idea.co!==state.co){state.co=idea.co;coSel.value=idea.co;fillMe()}
   nav();
-  if(chl||ch){app.innerHTML=ch?challengePage(ch):challengesPage();wireCh(ch);return}
-  app.innerHTML=b?buildPage(b):st?steer():catalog();if(st)wireCh(null);
+  if(il||idea){app.innerHTML=idea?ideaPage(idea):ideasPage();wireIdeas(idea);return}
+  app.innerHTML=b?buildPage(b):st?steer():catalog();if(st)wireIdeas(null);
   if(b){document.getElementById('cmt-form').onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;b.comments.push({u:state.me,t:today(),b:v});save();render();toast('Comment posted')}}
   else if(!st){document.getElementById('upload').onclick=function(){toast('Upload is spec 02. New builds land here under New.')};
     var ss=document.getElementById('status');ss.value=state.status;ss.onchange=function(){state.status=ss.value;render()}}
 }
 app.addEventListener('click',function(e){
-  var t=e.target.closest('[data-decide],[data-rate],[data-vote],[data-open],[data-share],[data-sort],[data-dept],[data-launch]');if(!t)return;
+  var t=e.target.closest('[data-decide],[data-rate],[data-vote],[data-ivote],[data-idea],[data-istatus],[data-isort],[data-open],[data-share],[data-sort],[data-dept],[data-launch]');if(!t)return;
   if(t.dataset.decide){openDecide(byId(t.dataset.decide))}
+  else if(t.dataset.ivote){var ix=ideaById(t.dataset.ivote),k=ix.votes.indexOf(state.me);if(k>=0){ix.votes.splice(k,1);delete ix.impact[state.me];save();render();toast('Vote removed')}else openRate(ix)}
+  else if(t.dataset.idea){location.hash='idea-'+t.dataset.idea}
+  else if(t.dataset.istatus){openStatus(ideaById(t.dataset.istatus))}
+  else if(t.dataset.isort){state.isort=t.dataset.isort;render()}
   else if(t.dataset.rate){openRate(byId(t.dataset.rate))}
   else if(t.dataset.vote){var b=byId(t.dataset.vote),i=b.votes.indexOf(state.me);if(i>=0){b.votes.splice(i,1);delete b.impact[state.me];save();render();toast('Vote removed')}else openRate(b)}
   else if(t.dataset.launch){toast('Opens '+byId(t.dataset.launch).name+' in a new tab once it’s uploaded for real.')}
@@ -814,16 +812,16 @@ app.addEventListener('click',function(e){
   else if(t.dataset.dept){state.dept=t.dataset.dept;render()}
 });
 window.addEventListener('hashchange',function(){render();window.scrollTo(0,0)});
-document.getElementById('reset').onclick=function(){apply(JSON.parse(SEED));CHALLENGES=JSON.parse(SEED_CH);save();render();toast('Sample data reset')};
+document.getElementById('reset').onclick=function(){apply(JSON.parse(SEED));IDEAS=JSON.parse(SEED_ID);save();render();toast('Sample data reset')};
 
 /* ---------- vote with impact ---------- */
 var rateDlg=document.getElementById('rate'),rateB=null;
-function openRate(b){rateB=b;document.getElementById('rate-title').textContent='How much does '+b.name+' help you?';
+function openRate(b){rateB=b;document.getElementById('rate-title').textContent=b.problem?'How much would this help you?':'How much does '+b.name+' help you?';
   rateDlg.querySelectorAll('[data-level]').forEach(function(x){x.setAttribute('aria-pressed',b.votes.indexOf(state.me)>=0&&lvl(b,state.me)==x.dataset.level)});
   if(rateDlg.showModal)rateDlg.showModal();else rateDlg.setAttribute('open','')}
 rateDlg.querySelectorAll('[data-level]').forEach(function(x){x.onclick=function(){var b=rateB,L=+x.dataset.level,had=b.votes.indexOf(state.me)>=0;
   if(!had)b.votes.push(state.me);b.impact[state.me]=L;save();rateDlg.close();render();
-  toast(had?'Updated: '+IMPACT[L]:(b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted: '+IMPACT[L]))}});
+  toast(had?'Updated: '+IMPACT[L]:(!b.problem&&b.votes.length===THRESHOLD?b.name+' is now ready for analysis':'Voted: '+IMPACT[L]))}});
 document.getElementById('rate-cancel').onclick=function(){rateDlg.close()};
 
 /* ---------- leadership direction ---------- */
@@ -841,36 +839,43 @@ document.getElementById('dec-form').onsubmit=function(e){e.preventDefault();var 
   if(!decKind){toast('Pick a direction');return}if(!w){toast('Add a reason so the team knows why');return}
   decB.decision={kind:decKind,by:state.me,t:today(),why:w};save();decDlg.close();render();toast(decB.name+': '+DEC[decKind].label)};
 
-/* ---------- challenge dialogs ---------- */
-var entDlg=document.getElementById('enter'),winDlg=document.getElementById('win'),newDlg=document.getElementById('newch'),curCh=null,winPick=null;
-function wireCh(c){curCh=c;
-  var nb=document.getElementById('new-ch');if(nb)nb.onclick=function(){document.getElementById('nc-dept').innerHTML=COMPANIES[state.co].depts.map(function(d){return'<option>'+esc(d)+'</option>'}).join('');
-    ['nc-title','nc-ask','nc-prize'].forEach(function(i){document.getElementById(i).value=''});
-    var dt=new Date(Date.now()+30*864e5);document.getElementById('nc-close').value=dt.toISOString().slice(0,10);newDlg.showModal()};
-  if(!c)return;
-  var eb=document.getElementById('enter-ch');if(eb)eb.onclick=function(){
-    var opts=BUILDS.filter(function(b){return b.co===c.co&&c.entries.indexOf(b.id)<0});
-    document.getElementById('enter-list').innerHTML=(opts.length?opts.map(function(b){return'<button type="button" class="level" data-pick="'+b.id+'"><strong>'+esc(b.name)+'</strong><span>'+esc(b.dept)+' · '+esc(b.tag)+'</span></button>'}).join(''):'<p class="lede">Every build here is already entered.</p>')+
-      '<button type="button" class="level" data-pick="__new"><strong>+ Upload a new build</strong><span>Built something just for this? Upload it and it enters automatically.</span></button>';
-    entDlg.showModal()};
-  var pw=document.getElementById('pick-win');if(pw)pw.onclick=function(){winPick=null;
-    document.getElementById('win-list').innerHTML=entriesRanked(c).map(function(b){return'<button type="button" class="level" data-win="'+b.id+'" aria-pressed="false"><strong>'+esc(b.name)+'</strong><span>'+b.votes.length+' votes, '+relyCount(b)+' rely on it, score '+score(b)+(b.decision?' · leadership: '+DEC[b.decision.kind].label:'')+'</span></button>'}).join('');
-    document.getElementById('win-why').value='';winDlg.showModal()};
-  var ro=document.getElementById('reopen-ch');if(ro)ro.onclick=function(){c.winner=null;c.winWhy='';save();render();toast('Challenge reopened')};
+/* ---------- idea dialogs ---------- */
+var niDlg=document.getElementById('newidea'),isDlg=document.getElementById('istatus'),curIdea=null,isPick=null;
+function wireIdeas(i){
+  var nb=document.getElementById('new-idea');if(nb)nb.onclick=function(){document.getElementById('ni-dept').innerHTML=COMPANIES[state.co].depts.map(function(d){return'<option'+(d===state.dept?' selected':'')+'>'+esc(d)+'</option>'}).join('');
+    ['ni-title','ni-problem'].forEach(function(x){document.getElementById(x).value=''});document.getElementById('ni-similar').hidden=true;niDlg.showModal()};
+  var fs=document.getElementById('ifilter');if(fs){fs.value=state.ifilter;fs.onchange=function(){state.ifilter=fs.value;render()}}
+  var ss=document.getElementById('set-status');if(ss)ss.onclick=function(){openStatus(i)};
+  var cf=document.getElementById('cmt-form');if(cf&&i)cf.onsubmit=function(e){e.preventDefault();var v=document.getElementById('cmt').value.trim();if(!v)return;i.comments.push({u:state.me,t:today(),b:v});save();render();toast('Comment posted')};
 }
-document.getElementById('enter-list').addEventListener('click',function(e){var t=e.target.closest('[data-pick]');if(!t)return;
-  if(t.dataset.pick==='__new'){entDlg.close();toast('Upload is spec 02. A build uploaded from here enters the challenge automatically.');return}
-  curCh.entries.push(t.dataset.pick);save();entDlg.close();render();toast(byId(t.dataset.pick).name+' entered. Share it to get votes.')});
-document.getElementById('win-list').addEventListener('click',function(e){var t=e.target.closest('[data-win]');if(!t)return;winPick=t.dataset.win;
-  winDlg.querySelectorAll('[data-win]').forEach(function(x){x.setAttribute('aria-pressed',x===t)})});
-document.getElementById('win-form').onsubmit=function(e){e.preventDefault();var w=document.getElementById('win-why').value.trim();
-  if(!winPick){toast('Pick an entry');return}if(!w){toast('Say why it won, so everyone learns what wins');return}
-  curCh.winner=winPick;curCh.winWhy=w;save();winDlg.close();render();toast(byId(winPick).name+' wins!')};
-document.getElementById('new-form').onsubmit=function(e){e.preventDefault();var g=function(i){return document.getElementById(i).value.trim()};
-  if(!g('nc-title')||!g('nc-ask')||!g('nc-prize')){toast('Fill in the title, what you need, and the prize');return}
-  var c={id:'c'+Date.now().toString(36),co:state.co,dept:g('nc-dept'),title:g('nc-title'),ask:g('nc-ask'),prize:g('nc-prize'),by:state.me,opens:today(),closes:g('nc-close')||today(),entries:[],winner:null,winWhy:''};
-  CHALLENGES.push(c);save();newDlg.close();location.hash='ch-'+c.id;toast('Challenge posted to '+c.dept)};
-[['enter-cancel',entDlg],['win-cancel',winDlg],['nc-cancel',newDlg]].forEach(function(x){document.getElementById(x[0]).onclick=function(){x[1].close()}});
+// Show similar ideas while typing, so people vote instead of posting a duplicate.
+document.getElementById('ni-title').addEventListener('input',function(){
+  var words=this.value.toLowerCase().split(/\W+/).filter(function(w){return w.length>3}),box=document.getElementById('ni-similar');
+  var hits=words.length?coIdeas().filter(function(i){var t=(i.name+' '+i.problem).toLowerCase();return words.some(function(w){return t.indexOf(w)>=0})}).slice(0,3):[];
+  box.hidden=!hits.length;box.innerHTML='Is it one of these? Vote on it instead: '+hits.map(function(i){return'<a href="#idea-'+i.id+'">'+esc(i.name)+'</a>'}).join(', ');
+  box.querySelectorAll('a').forEach(function(a){a.onclick=function(){niDlg.close()}})});
+document.getElementById('ni-form').onsubmit=function(e){e.preventDefault();var g=function(x){return document.getElementById(x).value.trim()};
+  if(!g('ni-title')||!g('ni-problem')){toast('Say what you need and what’s hard today');return}
+  var i={id:'i'+Date.now().toString(36),co:state.co,dept:g('ni-dept'),name:g('ni-title'),problem:g('ni-problem'),by:state.me,t:today(),status:'review',builder:null,build:null,why:'',sby:null,st:null,votes:[state.me],impact:{},comments:[]};
+  i.impact[state.me]=3;IDEAS.push(i);save();niDlg.close();location.hash='idea-'+i.id;toast('Idea posted. Share it so coworkers can vote.')};
+function showStatusFields(){var k=isPick;document.getElementById('is-builder-f').hidden=!(k==='planned'||k==='building'||k==='live');document.getElementById('is-build-f').hidden=k!=='live'}
+function openStatus(i){if(!isOwner()||!i)return;curIdea=i;isPick=i.status;
+  document.getElementById('is-h').textContent='Set status: '+i.name;
+  document.getElementById('is-facts').textContent=i.votes.length+' vote'+(i.votes.length===1?'':'s')+', '+relyCount(i)+' would rely on it, score '+score(i)+'.';
+  document.getElementById('is-levels').innerHTML=Object.keys(ISTATUS).map(function(k){return'<button type="button" class="level" data-st="'+k+'" aria-pressed="'+(k===isPick)+'"><strong>'+ISTATUS[k].label+'</strong><span>'+ISTATUS[k].desc+'</span></button>'}).join('');
+  document.getElementById('is-builder').value=i.builder||'voosa';
+  document.getElementById('is-build').innerHTML=BUILDS.filter(function(b){return b.co===i.co}).map(function(b){return'<option value="'+b.id+'"'+(b.id===i.build?' selected':'')+'>'+esc(b.name)+'</option>'}).join('');
+  document.getElementById('is-why').value=i.why||'';showStatusFields();
+  if(isDlg.showModal)isDlg.showModal();else isDlg.setAttribute('open','')}
+document.getElementById('is-levels').addEventListener('click',function(e){var t=e.target.closest('[data-st]');if(!t)return;isPick=t.dataset.st;
+  isDlg.querySelectorAll('[data-st]').forEach(function(x){x.setAttribute('aria-pressed',x===t)});showStatusFields()});
+document.getElementById('is-form').onsubmit=function(e){e.preventDefault();var w=document.getElementById('is-why').value.trim(),i=curIdea;
+  if((isPick==='planned'||isPick==='wontdo')&&!w){toast('Add a reason so everyone knows why');return}
+  i.status=isPick;i.why=w;i.sby=state.me;i.st=today();
+  i.builder=(isPick==='planned'||isPick==='building'||isPick==='live')?document.getElementById('is-builder').value:null;
+  i.build=isPick==='live'?document.getElementById('is-build').value:null;
+  save();isDlg.close();render();toast(i.name+': '+ISTATUS[isPick].label)};
+[['ni-cancel',niDlg],['is-cancel',isDlg]].forEach(function(x){document.getElementById(x[0]).onclick=function(){x[1].close()}});
 
 /* ---------- share ---------- */
 var dlg=document.getElementById('share'),shareB=null,channel='link';
